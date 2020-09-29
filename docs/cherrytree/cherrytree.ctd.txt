@@ -1,0 +1,1144 @@
+PHP
+
+
+COMPOSER
+[error]
+composer command not found
+------------
+[solution]
+6Step 1 : Open Your terminal
+Step 2 : Run bellow command
+          curl -sS https://getcomposer.org/installer | php
+Step 3 : After installation run bellow command
+          sudo mv composer.phar /usr/local/bin/
+Step 4 : Open bash_profile file create alias follow bellow steps
+           vim ~/.bash_profile
+Step 5 : Add bellow line in bash_profile file
+          alias composer="php /usr/local/bin/composer.phar"
+Step 6 : Close your terminal and reopen your terminal and run bellow command composer
+
+
+SPARK
+Change namespaces in file ‘app/Config/Autoload’ and then:
+$ php spark namespaces
+All namepsaces shoudl have ‘Found’ filed ‘Yes’ value
+
+WINDOWS
+
+
+NETSH
+# netsh winhttp import proxy source =ie
+# netsh winhttp show proxy
+# netsh winhttp reset proxy
+
+MYSQL
+
+
+KEY-TOO-LONG
+[error]
+    mysql> Alter table tbl add key  UNIQUE KEY `mdl_authoautlinklogi_useis_uix` (`userid`,`issuerid`,`username`)
+OR
+    mysql> create table tbl (c1 int, ..., UNIQUE KEY `mdl_authoautlinklogi_useis_uix` (`userid`,`issuerid`,`username`),... )
+    
+error:    
+mysql create table #1071 - Specified key was too long; max key length is 767 bytes
+
+
+------------------------------------------
+[solution]
+alter table tbl convert to CHARACTER SET utf8 COLLATE utf8_general_ci;
+alter table tbl add key  UNIQUE KEY `mdl_authoautlinklogi_useis_uix` (`userid`,`issuerid`,`username`)
+
+
+LINUX
+
+
+SED
+Add character at the beginning of each line using sed command. For example to add # in front of each line we can use sed command with following syntax:
+
+    $ sed 's/^/#/' file.txt
+
+#add
+#character
+#at the
+#beginning of
+#each line
+-------------------------------------------------
+
+Delete the first known character in a string with sed
+
+    $ sed 's/^@\(.*\)/\1/'
+^ means beginning of the string
+@ your known char
+(.*) the rest, captured
+then captured block will be substituted to output Sorry, can't test it at the moment, but should be something like that
+
+
+
+    $ sed 's/^@//'
+This replaces the character @ when it's first ^ in the string, with nothing. Thus, deleting it.
+
+------------------------------------------------------------------------------------
+
+
+Trin leading and trailing specfic character (e.g. " and \t and whitespace )
+ 
+    $ echo -e '     "islam "   \t     ' | sed 's/^[" \t]*//;s/[" \t]*$//'
+
+
+
+
+DELETE_EMPTY_LINES
+sed  '/^$/d' tempdir/temp/rezvan-buckets -i
+
+
+ADD_TEXT_EACH_LINE
+sed -E 's#^(.*)#mc mirror --overwrite rezvan_host/\1 backup_host/rezvan-\1 \&\& \\#g' <file> 
+
+
+DPKG
+
+[error]
+dpkg frontend is locked
+
+[solution]
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock
+
+A package reconfiguration may also be needed after this, as well as fixing any potentially broken packages:
+
+sudo dpkg --configure -a
+sudo apt install -f
+
+APT
+
+
+PROXY
+Acquire::http::Proxy "http://PROXYSERVERIP:PROXYPORT";
+
+UPGRADE
+
+
+FROM_STRETCH9_TO_BUSTER10
+1.  backup /etc/apt/sources.list
+2. Change all 'Stretch' to ‘buster’ in this file
+3. apt update
+4. apt upgrade
+5. apt dist-uprgade
+6. reboot
+7. hostnamectl
+
+GIT
+
+
+GITLAB
+
+
+BACKUP
+On docker:
+
+[Backup]
+$ docker exec -it <gitlab_container> /bin/bash
+    $ /home/git/gitlab/bin/rake gitlab:backup:craete
+    OR
+    $ /var/opt/gitlab/gitlab-rails gitlab:backup:create
+    
+[Restore]
+$ docker cp 1595329046_2020_07_21_12.7.7_gitlab.tar <gitlab_container>:/home/git/data/backups/
+$ docker exec -it <gitlab_container> /bin/bash
+    $ /home/git/gitlab/bin/rake gitlab:backup:restore BACKUP=1595329046_2020_07_21_12.7.7 
+    OR
+    $ /var/opt/gitlab/gitlab-rails gitlab:backup:restore BACKUP=1595329046_2020_07_21_12.7.7
+
+
+----------------------------------------
+[Issue]
+$ rake gitlab pg_dump: aborting because of server version mismatch
+[solution]
+$ docker cp  127_postgresql_1:/usr/lib/postgresql/12   ./
+$ docker cp     ./12      /usr/lib/postgresql/
+$ ln -sf  /usr/lib/postgresql/12/bin/pg_dump        /usr/bin/pg_dump
+
+
+UPGRADE
+If Gitlab is running by docker-compose, JUST change image field of file "docker-compose.yml":
+
+    image: gitlab:12.7.7
+must changed to:
+    image: gitlab:13.2.2
+    
+And then run:
+    $ docker-compose up
+to upgrade Gitlab.
+Just it. an easy way!!!
+
+COMMANDS-TRICKS
+
+
+RESET
+$ git reset --hard
+$ git clean -f -d -x
+
+GIT CLONE
+
+How to git clone a specific tag
+
+$ git clone --depth 1 --branch <tag_name> <repo_url>
+
+--depth 1 is optional but if you only need the state at that one revision, you probably want to skip downloading all the history up to that revision.
+
+
+REMOTE
+Delete remote branch:
+    $ git push origin --delete infra1-Dockerize 
+---------------------------------------------------------------------
+
+PROXY
+
+git config --global http.proxyAuthMethod 'basic'
+
+git config --global https.proxy http://user:pass@proxyserver:port
+
+
+
+RENAME-BRANCH
+
+Renaming Git Branch
+Follow the steps below to rename a Local and Remote Git Branch:
+1. Start by switching to the local branch which you want to rename:
+git checkout <old_name>
+2. Rename the local branch by typing:
+git branch -m <new_name>
+At this point, you have renamed the local branch.
+If you’ve already pushed the <old_name> branch to the remote repository , perform the next steps to rename the remote branch.
+
+3. Push the <new_name> local branch and reset the upstream branch:
+git push origin -u <new_name>
+4. Delete the <old_name> remote branch:
+git push origin --delete <old_name>
+That’s it. You have successfully renamed the local and remote Git branch.
+
+
+GIT-LFS
+
+
+INSTALL
+
+$ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash 
+$ sudo apt-get install git-lfs
+$ cd project_dir 
+$ git lfs install
+
+$ git lfs track "*.gitlab_backup.tar"
+$ git add .gitattributes
+$ git add "*.gitlab_backup.tar"
+$ git commit -m "Add design file"
+$ git lfs push origin master
+$ git push origin master
+
+
+If still error in pushing, you can do the followings:
+$ git reset --mixed <commit_before_adding_the_large_files>
+$ git add .
+$ git commit -m “new commit”
+$ git lfs track "*.tar"
+ $ git push
+
+ 
+
+
+
+DEVOPS
+
+
+CONFIGURATION-MANAGEMENT
+
+
+TOOLS
+
+4 most popular tools:
+
+
+
+
+Ansible & SaltStack = push based tools = You can push all the configurations onto your node machines directly 
+PUPPET & CHEF = pull based configuration management tools = rely on a central server
+
+ANSIBLE
+
+You can apply the security over your entire infrastructure using Ansible 
+Ansible is compatible with security verification tools, like: openSCAP, Stigma. These tools carries out a timely inspection of all your software inventory and check for any kind of vulnerabilities and it allows you to take steps to prevent the attacks before they actually happen
+
+COURSE
+
+
+1
+session:
+- Python
+- 12 factors cloud native (Heroku co.)
+   → factor 6: Excute the app stateless.
+      ⇒ هر برنامه یا ابزرای که داده در رم یا دیسک ذخیره میکند یک ابزار Stateful محسوب میشود. 
+      ⇒ A DevOps engineer should know whether a project is Stateful or Stateless. IF it is Stateful, design Stateful pattern in K8s and etc. ELSE design a stateless pattern.
+         • stateful
+         • stateless
+      
+      نکته: Redis چون یک ابزار دیتابیسی هست بنابراین  Stateful هست. از طرفی ما فقط ابزارهای Stateful را کلاستر میکنیم. 
+         • High Available Redis by cluster
+         • در تصویر زیر یک Redis Cluster میبینید که ۳ تا node دارد: یکی Master و ۲ تا Slave.نود Master همزمان داده ها را  replicate میکند. و اگر هم زمانی down شود یکی از نود های slave تبدیل به master میشوند.
+         
+      
+      
+         • نرم افزار ها ۲ وضعیت دارند:
+            ◇ نحوه ارتباط کاربر با سیستم
+               ▪ زمانی که کاربر یک درخواست به سرور میدهد سرور یک وضعیت برای کاربر ایجاد میکند.
+            ◇ نحوه ارتباط سیستم با ابزارهای مورد نیازش
+
+
+مثلا در تصویر زیر کاربر (مستطیل پایین تصویر) از ۲ سرور بالایی درخواست هایی دارد. کاربر در سرور سمت چپی ۲ تا فایل آپلود کرده. همچنین در سرور سمت راستی لاگین کرده. حال اگر فایل های آپلودی را از سرور سمت راستی درخواست دهد خطای not found نشان داده میشود. و یا موقع درخواست به سرور سمت چپی خطای not authenticated میبیند.
+فرض کنید دو تا سرور با یک load balancer درخواست ها را میگیرند. حال کاربر یکبار فایل را با موفقیت دانلود میکند ولی بار دیگر خطای دانلود میبیند. زیرا load balancer یکبار درخواست کاربر را به سرور سمت راست و بار دیگر به سرور سمت چپ میفرستد.
+   
+   
+   
+      ⇒ stateless
+
+
+
+
+
+در تصویر زیر چون شماره session از طریق یکی از سرورها ( ۴ سرور در میان تصویر) در کش redis ذخیره شده و هر یک از ۴ تا سرور دیگر که App را دارند برای لاگین و اعتبارسنجی به Redis درخواست میدهند کاربر همیشه قابلیت ورود به App با موفقیت را دارد.
+همچنین برای نگه داری فایل های آپلودی کاربر از یک Shared Storage استفاده میشود.
+
+
+
+
+   → Factor 7: Project must expose in a  port
+      ⇒ Export services via port binding
+      ⇒ تا از طریق یک Api قایل دسترسی باشد.
+      ⇒ چون پروتکل HTTP ذاتا یک پروتکل Stateless هست و امکان expose کردن app روی یک پورت هم هست بنابراین اکثر برنامه ها بخاطر رعایت دو فاکتور ۶ و ۷ از پروتکل HTTP استفاده میکنند. 
+
+5
+
+
+MONITORING
+بنده بعنوان یک کارشناس DevOps بایستی برنامه نویس را مجبور به پیاده سازی یک Restful API بکنم به آدرس مثالی زیر:
+/System/Metrics
+که با متد Get بتوان خروجی مناسب برای ابزار مثلا Prometheus را گرفت.
+و یا با استفاده از مند Get آدرس زیر بتوان دیتابیس یا خود اپلیکیشن را در Prometheus مانیتورینگ کرد:
+/System/Metrics/db
+/System/Metrics/App
+
+
+RESTFUL
+
+
+ENDPOINT
+bad practice:
+/users  -→ correct check
+/users/ -→ false
+------------------------------
+/users -→ correct
+/Users --→ false
+-----------------------------
+/users/adduser --→ false
+POST /users --→ correct
+زیرا action اضافه کردن user ر ا نباید در url آورد. بلکه بایستی از پروتکل http استفاده کرد که خودش برای اضافه کردن یک resource به یک collection از متد post استفاده میکند.
+نکته: http://example.com/
+--------------------------------------
+مثلا برای لاگین کاربر و برای خروجش و همچنین ریست کردن پسورد روش زیر اشتباه است:
+/login
+/logout
+/reset-password
+بلکه بایستی بصورت زیر باشد:
+[Register]
+Post /auth/password    <---- email 
+Patch /auth/password <---- (verify_code_emailed, new_password)
+
+[Login]
+Post /auth/tokens
+DELETE /auth/password   
+-----------------------------------
+/network_policies  → false
+/network-policies -→ correct
+
+
+HEADERS
+cache-control
+expires
+...........
+ETag: a token string 
+در زمان تغییر یک resource بایستی این مقدار ETag را نیز تغییر بدهیم تا به سایرین مثلا کوبرنتیز بفهمانیم که این resource تغییر کرده و باید آپدیتش کند.
+.............
+last-modified
+زمان تغییر را بر اساس تاریخ
+در واقع در ETag بر اساس توکن میگوییم که resource تغییر کرده یا خیر نسبت به آخرین نسخه ی موجود در کش کلاینت ها مثل کوبرنتیز
+اما در last-modified بر اساس تاریخ میگوییم تغییر کرده یا خیر ...زیرا تاریخ آخرین تغییر resource را نگه میداریم
+..................
+accept-Encoding
+آیا سرور قابلیت Encode جواب ها و درخواست ها را دارد یا خیر. مثلا میگوییم این قابلیت را دارد و از GZip یا Compress و یا از xz پشتیبانی میکند
+....................
+مقادیر فوق همگی در محیط وب سرور مدیریت میشوند
+............................... 
+
+
+STATUSCODES
+200 → OK
+    The response should contains requested resource
+403 -→ Forbidden
+    Response should be in the client's media type: JSON -→ 403, XML -→ 403
+
+CONTENT-NEGOTIATION
+بایستی مهندس DevOps در وب سرور تغریف کند که نوع داده ای که وب سرویس نوشته شده توسط برنامه نویس قبول میکند مثلا موارد زیر هست:
+content-types:
+
+application/json
+application/x-yaml
+
+IDEMPOTENT
+همه متدهای http بجز post بایستی idempotent باشند.
+یعنی در هر بار فراخوانی در صورت عدم تغییر در resource ها یک جواب برگردانند.
+مثلا با صدا زدن put فقط یکبار resource ساخته میشود و دفعات بعدی ساخته نمیشود.
+.........
+مثلا کوبرنتیز در متد POST اش idempotent نیست زیرا با هر بار اجرای دستور docker run redis یک کانتینر جدید میسازد و اجرا میکند و نمیگوید که قبلا اجرا بوده است.
+
+SECURITY
+دسترسی پیش فرض کاربران به منابع بایستی denied باشد. و یک ماژول پشت صحنه باشد که برای هر کاربر جدید access write ها را ایجاد کند و access ruleها را تعریف کند
+
+همچنین سیستم های امنیتی نصب شده نباید کار را برای کاربر سخت کنند.
+
+همه چیز واضح باشد برای کاربر: یعنی مثلا در داکر وقتی یک کانتینر اجرا میشود برای اضافه کردن یک volume به آن کانتینر خود کاربر بایستی اضافه کند و خود داکر اینکار را پشت صحنه و بدون اطلاع کاربر انجام نمیدهد.
+
+VERSIONING
+یک برنامه خوب باید API هاش ورژن بندی داشته باشد:
+/api/v1/users
+زیرا تغییر در یک ورژن باعث بهم ریختن client های API خواهد شد اگر ورژن نداشته باشد.
+
+6
+owasp -→ a security methodology for API implementation
+NIST ----→ a security methodology for API implementation
+STIG ----→ a security methodology for API implementation
+
+7
+$ python3 -m pip install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 --user venv
+$ sudo     apt-get install python3-venv
+$ python3.7 -m venv venv
+$ source venv/bin/activate
+$ pip3.7 install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 -U pip
+$ pip3.7 install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 flask
+ 
+------------------------------------------------------
+put these lines into a app.py file:
+
+    from flask import Flask
+    from flask import jsonify
+    from flask import request
+
+    app = Flask(__name__)
+    
+    USERS = list()
+
+@app.route("/api/v1/users", methods=["GET","POST"])
+def users():
+	if request.method == "GET":
+		return jsonify(USERS)
+	elif request.method == "POST":
+		if request.is_json:
+			USERS.append(
+				{
+					"username": request.get_json()["username"]
+				}
+			)
+		else:
+			return "Invalid Media Type!"
+				
+	return "OK."	
+		
+
+@app.route("/api/v1/users/<username>")
+def user(username):
+#	found = False
+	for user in USERS:
+		if user["username"] == username:
+#			found = True
+			return {"username": user}
+#	if found == False:
+	return "User not found!"
+
+if __name__ == "__main__":
+	app.run()
+
+	
+---------------------------------------------------------------------------
+
+$ flask run
+-------------------------------------------------------------------------------
+
+$ curl localhost:5000/api/v1/users -H 'Content-type: application/json' -d '{"username": "MAHDI"}' -X POST
+
+Add these lines to a file named “.flaskenv”
+
+    FLASK_APP=hello.py 
+    FLASK_ENV=development 
+    FLASK_DEBUG=1
+ 
+
+---------------------------------------------------------------------------
+To have a development environment:
+
+pip3.7 install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 python-dotenv
+
+
+
+JINJA2-TEMPLATE-ENGINE
+
+
+TOOLS
+
+
+DOCKER
+
+
+SEARCH
+List tags of an image:
+
+
+wget -q https://registry.hub.docker.com/v1/repositories/debian/tags -O -  | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n'  | awk -F: '{print $3}'
+UPDATE Thanks for @degelf's advice. Here is the shell script.
+
+
+
+
+#!/bin/bash
+
+if [ $# -lt 1 ]
+then
+cat << HELP
+
+dockertags  --  list all tags for a Docker image on a remote registry.
+
+EXAMPLE: 
+    - list all tags for ubuntu:
+       dockertags ubuntu
+
+    - list all php tags containing apache:
+       dockertags php apache
+
+HELP
+fi
+
+image="$1"
+tags=`wget -q https://registry.hub.docker.com/v1/repositories/${image}/tags -O -  | sed -e 's/[][]//g' -e 's/"//g' -e 's/ //g' | tr '}' '\n'  | awk -F: '{print $3}'`
+
+if [ -n "$2" ]
+then
+    tags=` echo "${tags}" | grep "$2" `
+fi
+
+echo "${tags}"
+
+
+
+You can just create a new file name, dockertags, under /usr/local/bin (or add a PATH env to your .bashrc/.zshrc), and put that code in it. Then add the executable permissions(chmod +x dockertags).
+Usage:
+dockertags ubuntu ---> list all tags of ubuntu
+dockertags php apache ---> list all php tags php containing 'apache'
+
+
+PRIVATE-REGISTRY
+Search in a private registry:
+
+docker exec -it <your_registry_container_id> ls -a /var/lib/registry/docker/registry/v2/repositories/
+
+
+docker exec -it <your_registry_container_id> ls -a /var/lib/registry/docker/registry/v2/repositories/postgresql/_manifests/tags
+
+DOCKER-COMPOSE
+1. Run this command to download the current stable release of Docker Compose:
+sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+To install a different version of Compose, substitute 1.26.2 with the version of Compose you want to use.
+If you have problems installing with curl, see Alternative Install Options tab above.
+
+2. Apply executable permissions to the binary:
+sudo chmod +x /usr/local/bin/docker-compose
+----------------------------------------------------------------------------------------------------------
+
+[Error]
+    $ docker-compose up
+Network ‘89678bjsd87786ashvhvasd’ Not found
+
+[solution]
+sudo docker-compose up --force-recreate -d
+ ------------------------------------------------------------------------------------------------------------
+
+DEPENDS_VS_LINKS
+
+depends_on
+Express dependency between services, which has two effects:
+• docker-compose up will start services in dependency order. In the following example, db and redis will be started before web.
+• docker-compose up SERVICE will automatically include SERVICE’s dependencies. In the following example, docker-compose up web will also create and start db and redis.
+Simple example:
+version: '2'
+services:
+  web:
+    build: .
+    depends_on:
+      - db
+      - redis
+  redis:
+    image: redis
+  db:
+    image: postgres
+    
+    ------------------------------------------------------
+
+Links:
+
+It is pretty clear in the documentation. depends_on decides the dependency and the order of container creation and links not only does these, but also
+Containers for the linked service will be reachable at a hostname identical to the alias, or the service name if no alias was specified.
+For example, assuming the following docker-compose.yml file:
+web:
+  image: example/my_web_app:latest
+  links:
+    - db
+    - cache
+
+db:
+  image: postgres:latest
+
+cache:
+  image: redis:latest
+With links, code inside web will be able to access the database using db:5432, assuming port 5432 is exposed in the db image. If depends_on were used, this wouldn't be possible, but the startup order of the containers would be correct.
+
+
+CONTAINER
+
+
+CHANGE-PORT
+You can change the port mapping by directly editing the hostconfig.json file at /var/lib/docker/containers/[hash_of_the_container]/hostconfig.json
+You can determine the [hash_of_the_container] via the docker inspect <container_name> command and the value of the "Id" field is the hash.
+1) stop the container 
+2) stop docker service (per Tacsiazuma's comment)
+3) change the file
+4) restart your docker engine (to flush/clear config caches)
+5) start the container
+So you don't need to create an image with this approach. You can also change the restart flag here.
+
+
+CHANGE-NETWORK
+$ sudo docker network disconnect <brdige-OR-old_network> <container>
+$ sudo docker network connect <new_network> <container>
+
+DEVOPS
+
+
+UPDATE-CONTAINER
+$ docker run -d --restart unless-stopped redis
+
+OR
+
+$ docker update --restart=<options> <container ID or name>.
+
+
+
+
+
+Options:
+
+| Flag | Description |
+| no | Do not automatically restart the container. (the default) |
+| on-failure | Restart the container if it exits due to an error, which manifests as a non-zero exit code. |
+| always | Always restart the container if it stops. If it is manually stopped, it is restarted only when Docker daemon restarts or the container itself is manually restarted. (See the second bullet listed in restart policy details) |
+| unless-stopped | Similar to always, except that when the container is stopped (manually or otherwise), it is not restarted even after Docker daemon restarts. |
+
+
+
+
+
+DOCKERFILE
+
+
+ADD.VS.COPY
+ADD can also copy files from a URL. It can download an external file and copy it to the wanted destination. For example:
+           $ ADD http://source.file/url  /destination/path
+
+Note: The ADD command extracts a compressed source only if it is in a recognized compression format which is solely based on the contents of the file (not on the file name). The recognized compression formats include identity, gzip, bzip, and xz.
+
+The Docker team also strongly discourages using ADD to download and copy a package from a URL. Instead, it’s safer and more efficient to use wget or curl within a RUN command. By doing so, you avoid creating an additional image layer and save space.
+Let’s say you want to download a compressed package from a URL, extract the content, and clean up the archive.
+Instead of using ADD and running the following command:
+ADD http://source.file/package.file.tar.gz /temp
+RUN tar -xjf /temp/package.file.tar.gz \
+  && make -C /tmp/package.file \
+  && rm /tmp/ package.file.tar.gz
+
+You should use:
+
+RUN curl http://source.file/package.file.tar.gz \
+  | tar -xjC /tmp/ package.file.tar.gz \
+  && make -C /tmp/ package.file.tar.gz
+  
+Note: The only time you would need to use the ADD command is when extracting local tar files into the image.
+
+
+
+RUN_CMD_ENTRYPOINT
+
+https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/#:~:text=ENTRYPOINT%20instruction%20allows%20you%20to,runs%20with%20command%20line%20parameters.
+
+
+
+
+Shell form
+
+<instruction> <command>
+Examples:
+RUN apt-get install python3
+CMD echo "Hello world"
+ENTRYPOINT echo "Hello world"
+When instruction is executed in shell form it calls /bin/sh -c <command> under the hood and normal shell processing happens. For example, the following snippet in Dockerfile
+ENV name John Dow
+ENTRYPOINT echo "Hello, $name"
+when container runs as docker run -it <image> will produce output
+Hello, John Dow
+Note that variable name is replaced with its value.
+
+
+Exec form
+This is the preferred form for CMD and ENTRYPOINT instructions.
+<instruction> ["executable", "param1", "param2", ...]
+Examples:
+RUN ["apt-get", "install", "python3"]
+CMD ["/bin/echo", "Hello world"]
+ENTRYPOINT ["/bin/echo", "Hello world"]
+When instruction is executed in exec form it calls executable directly, and shell processing does not happen. For example, the following snippet in Dockerfile
+ENV name John Dow
+ENTRYPOINT ["/bin/echo", "Hello, $name"]
+when container runs as docker run -it <image> will produce output
+Hello, $name
+Note that variable name is not substituted.
+
+How to run bash?
+If you need to run bash (or any other interpreter but sh), use exec form with /bin/bash as executable. In this case, normal shell processing will take place. For example, the following snippet in Dockerfile
+ENV name John Dow
+ENTRYPOINT ["/bin/bash", "-c", "echo Hello, $name"]
+when container runs as docker run -it <image> will produce output
+Hello, John Dow
+------------------------------------------------------------
+A good illustration of RUN instruction would be to install multiple version control systems packages:
+RUN apt-get update && apt-get install -y \
+  bzr \
+  cvs \
+  git \
+  mercurial \
+  subversion
+
+Note that apt-get update and apt-get install are executed in a single RUN instruction. This is done to make sure that the latest packages will be installed. 
+
+If apt-get install were in a separate RUN instruction, then it would reuse a layer added by apt-get update, which could had been created a long time ago.
+
+
+RUN
+[error]
+
+    $ sudo docker run -d -p 8085:8080 -p 8086:80 -it --name=nginx3 -v files/php/custom.php.ini:/usr/local/etc/php/conf.d/docker-php-custom.php.ini:ro   php-fpm-nginx:7.2.18.1       
+
+docker: Error response from daemon: create files/php/custom.php.ini: "files/php/custom.php.ini" includes invalid characters for a local volume name, only "[a-zA-Z0-9][a-zA-Z0-9_.-]" are allowed. If you intended to pass a host directory, use absolute path. 
+See 'docker run --help'.
+ 
+----------------
+[solution]
+Add “$(PWD)” to start of the volume source:
+ 
+    $ sudo docker run -d -p 8085:8080 -p 8086:80 -it --name=nginx3 -v "$(pwd)"/files/php/custom.php.ini:/usr/local/etc/php/conf.d/docker-php-custom.php.ini:ro    docker.itc.aqr.ir/ict/php-fpm-nginx:7.2.18.1
+
+
+
+SAVE-LOAD
+$ docker save -o <image.tar> image:tag
+copy file <image.tar> to another machine
+$ docker load -i <image.tar>
+
+NETWORK
+با استفاده از اجرای دستور زیر میتوان شبکه های داکر را لیست کرد:
+
+user1@AliIbnMusaReza:~$ sudo docker network ls 
+NETWORK ID          NAME                 DRIVER              SCOPE 
+bbc1192eb4df        bridge               bridge              local 
+4f4fa495edf4        greenlight_default   bridge              local 
+71c5379341b8        host                 host                local 
+c721490f0d91        none                 null                local
+ 
+
+اگر یک کانتینر را با شبکه none بیاریم بالا آنوقت کانتینر ایزوله میباشد و فقط یک شبکه بصورت loopback دارد:
+docker run --name webserver1 -itd nginx:latest --network none
+اگر یک کانتینر را با شبکه host بیاریم بالا  ← آنوقت شبکه کانتینر همان شبکه هاست میباشد. هر پورتی مثلا پورت ۸۰ که در کانتینر وجود دارد در هاست بدون map کردن قابل مشاهده هست.
+
+شبکه overlay برای دیدن کانتینرهای در هاست های مختلف استفاده میشه.
+.....................................................................................................
+نکته مهم: دقت شود که داکر برای راحتی کار یک پورت که publish شده را در rule های iptable chain بصورت خودکار قرار میدهد. زیرا اگر داکر این کار را نکند کانفیگ کردن iptable برای داکر کمی سخت است و زمانگیر.
+لذا بسیار دقت شود که حتی در صورت کانفیگ کردن درست iptables جهت امنیت هاست   اگر یک کانتینر بالا بیاد باز هم پورت های publish شده آن از بیرون هاست قایل دسترسی هستند. 
+لذا عمل publish کردن پورت با دقت باید انجام شود و از روش هایی چون:
+docker run -itd -p 127.0.0.1:3308:3306 mysql:5.7
+و یا  پورت سرویس های حساسی چون دیتابیس را publish نکرد.
+....................................................................................
+فیلتر و تغییر نمایش لیست شبکه ها در داکر:
+user1@AliIbnMusaReza:~/tools/bigbluebutton/greenlight$ sudo docker network ls --filter name=test --filter driver=bridge --format "{{.ID}} islam {{.Driver}}"     
+c2deb2f1717c islam bridge 
+f48b3893fe9d islam bridge
+ 
+ 
+
+LOG
+$ docker run -d --name redis-server --log-driver=[syslog|none] redis
+
+$ docker inspect --format '{{ .HostConfig.LogConfig }}' redis-server
+
+
+
+INSTALL
+If you need a proxy to install docker:
+
+Steps:
+1. apt install tor
+2. Change file /etc/tor/torrc if you need pass tor traffic via a proxy:
+##manual changes 
+HTTPSProxy 10.10.10.5:8080 
+ 
+HTTPSProxyAuthenticator abbasi-mohsen:admin961 
+
+Also if you need use a tor bridge: 
+##Bridge 
+#UseBridges 1 
+#ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy 
+#Bridge obfs4 185.220.101.40:55080 F49B663186705FEFF7B4776D086B8A81D1ED3F4F cert=p9L6+25s8bnfkye1ZxFeAE4mAGY7DH4Gaj7dxngIIzP9BtqrHHwZXdjMK0RVIQ34C7aqZw iat-mode=0
+ 
+
+3. apt install apt-transport-tor
+4. apt-get remove docker docker-engine docker.io containerd runc 
+5. apt-get update
+6. apt-get install \ 
+    apt-transport-https \ 
+    ca-certificates \ 
+    curl \ 
+    gnupg-agent \ 
+    software-properties-common 
+7. torify curl -fsSL https://download.docker.com/linux/debian/gpg |  apt-key add - \
+8. apt-key fingerprint 0EBFCD88
+9. add-apt-repository \ 
+   "deb [arch=amd64] https://download.docker.com/linux/debian \ 
+   $(lsb_release -cs) \ 
+   stable" 
+10. Change file /etc/apt/sources.list:
+ Change 
+    deb [arch=amd64] https://download.docker.com/linux/debian buster stable
+ into:
+     deb [arch=amd64] tor+https://download.docker.com/linux/debian buster stable
+ 
+
+ 9. $ sudo apt-get update
+ 10. apt-get install docker-ce docker-ce-cli containerd.io
+ 
+
+
+
+
+INSTALL-COMPOSE
+curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+chmod +x /usr/local/bin/docker-compose
+
+
+PROXY
+You can set the proxy config in the services systemd config 
+(/etc/systemd/system/docker.service.d/http-proxy.conf):
+[Service]
+Environment="HTTP_PROXY=socks5://127.0.0.1:1080"
+
+$ systemctl daemon-reload
+$ systemctl restart docker.service
+
+KUBERNETES
+$ kubectl apply -f app.yml
+$ kubectl get deployment
+
+APP.YAML
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: nginx 
+  labels: 
+    app: nginx 
+spec: 
+  containers: 
+  - name: nginx
+    image: nginx
+    port:80
+    env:
+    - name: GREETING
+      value: "Warm greetings to"
+    - name: HONORIFIC
+      value: "The Most Honorable"
+    - name: NAME
+      value: "Kubernetes"
+    command: ["echo"]
+    args: ["$(GREETING) $(HONORIFIC) $(NAME)"]
+
+KUBECTL APPLY
+By running kubectl apply -f nginx.yaml available in your filesystem the following steps will happen
+
+1. the kubectl binary will read the contents of the file and determine it is a pod object in the v1 namespace
+2. it will issue a POST HTTP request to the API server with the contents of the file to the appropriate REST endpoint
+3. the cluster will store it in it's configuration
+4. processes inside Kubernetes will realise there should be a running Pod named nginx, but there aren't any
+5. another process will assign the Pod assignment to an available node
+6. a process on the node will receive the order and run your pod
+
+
+CONTROLLER
+Controller = Room temprature thermostat
+In essence, what they do is constantly monitor the desired state of Kubernetes and the current state of the cluster and perform actions to make sure they are the same (if possible).
+An example controller:
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+   name: keep-alive
+spec:  
+    replicas: 3 
+     selector:   
+         matchLabels:      
+             app: nginx  
+     template:    
+         metadata:      
+             labels:        
+                app: nginx    
+          spec:      
+              containers:      
+               - name: nginx        
+                 image: nginx
+
+If you delete a pod, it will start a new another one soon  
+ $ kubectl delete pod ....
+
+USERNAMEPASSWORD
+kind: Pod
+spec:
+    containers:
+        -  name:
+           image: 
+    imagePullSecrets:
+        - name: myregistryKey       
+
+
+KUBECTL
+[List used images]
+kubectl get pods -o jsonpath="{..image}" |tr -s '[[:space:]]' '\n' |sort |uniq -c
+ 
+
+PLUGIN
+
+kubectl provides a command kubectl plugin list that searches your PATH for valid plugin executables. Executing this command causes a traversal of all files in your PATH. Any files that are executable, and begin with kubectl- will show up in the order in which they are present in your PATH in this command's output. A warning will be included for any files beginning with kubectl- that are not executable. A warning will also be included for any valid plugin files that overlap each other's name.
+
+Using a plugin
+To use the above plugin, simply make it executable:
+sudo chmod +x ./kubectl-foo
+and place it anywhere in your PATH:
+sudo mv ./kubectl-foo /usr/local/bin
+You may now invoke your plugin as a kubectl command:
+kubectl foo
+
+KREW
+Krew is a tool that makes it easy to use kubectl plugins. Krew helps you discover plugins, install and manage them on your machine.
+
+CI/CD
+
+
+TOOLS
+Jenkins 2
+Gitlab CI
+Travis CI
+GoCD
+
+DATABASE
+دیتابیس‌های NoSQL مبتنی‌ بر Key-Value
+(Hash Table-Unique Key-Pointer Inverted Index)
+
+• Redis 
+• MemcacheDB
+• Riak
+- برای ذخیرهٔ داده‌های مرتبط با سِشِن کاربران لاگین‌شده در سیستم
+- مدیریت پروفایل‌های بدون ساختار کاربران
+- ذخیرهٔ تنظیمات حساب کاربری
+- ذخیرهٔ داده‌های سبد خرید در فروشگاه‌های آنلاین
+البته دیتابیس‌های Key-Value برای همهٔ موارد استفاده هم ایده‌آل نیستند؛ برای مثال، در موارد زیر بهتر است که از این نوع دیتابیس‌ها استفاده نکنیم:
+- وقتی باید یک کوئری بر اساس مقداری مشخص به دیتابیس بزنیم
+- نیاز به وجود رابطه‌ای معنادار میان مقادیر ذخیره‌شده داریم
+- باید عملیاتی را روی چندین کلید منحصربه‌فرد انجام دهیم
+- کسب‌وکار ما نیاز دارد تا مرتباً بخشی از داده‌ها را به‌روزرسانی کنیم
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+دیتابیس‌های NoSQL مبتنی‌ بر Document
+•  MongoDB
+•  Apache CouchDB
+•  Elasticsearch
+- فروشگاه‌های آنلاین
+- سیستم‌های مدیرت محتوا
+- پلتفرم‌های تجزیه و تحلیل دیتا
+- پلتفرم‌های وبلاگی
+به یاد هم داشته باشیم که دیتابیس‌های مبتنی‌ بر داکیومنت (سند) انتخاب مناسبی برای مواردی که می‌خواهید کوئری‌های پیچیده‌ای به پایگاه‌داده بزنید و یا اپلیکیشن شما نیاز به محاسبات پیچیده‌ای روی دیتا دارد نیست.
+----------------------------------------------------------------------------------------------------------------
+
+دیتابیس‌های NoSQL مبتنی‌بر Column
+در این دست دیتابیس‌های نواس‌کیو‌ال، داده‌ها به‌ جای ذخیره‌سازی در Row (ردیف) در قالب یکسری سلول (Cell) ذخیره شده سپس چند ستون از داده‌ها با یکدیگر هم‌گروه می‌شوند و مجموعه ستون‌های متعلق به یک گروه هم می‌توانند به‌ صورت مجازی بی‌نهایت ستون را شامل شوند که می‌توان در زمان اجرا و یا در زمان تعریف ساختار، آن‌ها را ساخت.
+جالب است بدانید که برای عملیات ثبت و فراخوانی داده‌ها، به‌ جای سطر از ستون‌ها استفاده می‌شود (مجموعه ستون‌ها، گروهی از داده‌های یکسان هستند که معمولاً همراه با هم فراخوانی می‌شوند.) به‌ عنوان‌ مثال، ما معمولاً نام‌کاربری، نام خانوادگی و دیگر اطلاعات کاربران را به‌ صورت هم‌زمان فراخوانی می‌کنیم ولی دستیابی به اطلاعات سفارش‌های آن‌ها در یک فروشگاه آنلاین به‌ همراه این دست اطلاعات فراخوانی نخواهد شد.
+مزیت اصلی ذخیره‌سازی داده‌ها در ستون نسبت به دیتابیس‌های رابطه‌ای، جستجو و دستیابی سریع و تجمیع داده‌ها است. دیتابیس‌های رابطه‌ای، یک ردیف از داده را به‌ عنوان یک ورودی به‌ هم پیوسته ذخیره می‌کنند و ردیف‌های متفاوت در مکان‌های متفاوتی ذخیره می‌شوند اما این در‌ حالی است که دیتابیس‌های مبتنی‌ بر ستون از جنس نو‌اس‌کیو‌ال، همهٔ سلول‌های مربوط به یک ستون را به‌ عنوان یک ورودی پیوسته ذخیره می‌کنند که این عمل بالتبع باعث سریع‌تر شدن جستجو و دستیابی به داده‌ها می‌شود. همچنین هر گروه از ستون‌ها می‌توانند با مجموعه‌ای از ردیف‌ها در دیتابیس‌های رابطه‌ای مقایسه شوند بدین شکل که Key همان Row است و هر Row هم شامل چندین Column می‌شود اما تفاوت در اینجا است که ردیف‌های متفاوت نیازی ندارند که ستون‌های یکسانی داشته باشند و ستون‌ها را می‌توان در هر زمان و به هر ردیفی اضافه کرد بدون اینکه نیاز باشد آن‌ها را به ردیف‌های دیگر هم اضافه نمود. به طور کلی، موارد استفادهٔ دیتابیس‌های مبتنی‌ بر Column عبارتند از:
+- سیستم‌های مدیریت محتوا
+- پلتفرم‌های وبلاگی
+- سرویس‌هایی که داده‌هایی با تاریخ انقضا را در خود ذخیره می‌کنند
+- سیستم‌هایی که نیاز به ریکوئست‌های بسیار سنگین ثبت داده (مانند ثبت لاگ‌های سیستم) دارند.
+
+• Cassandra
+• Apache Hadoop Hbase
+به طور کلی، چنانچه نیاز به انجام کوئری‌های پیچیده دارید و یا روش کوئری زدن شما به دیتابیس مرتباً تغییر می‌کند، نباید از دیتابیس‌های NoSQL مبتنی‌ بر Column استفاده کنید. مورد دیگری که نباید از این نوع دیتابیس استفاده کنید، زمانی است که تعریف مشخصی از سازوکار دیتابیس ندارید. 
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+دیتابیس‌های NoSQL مبتنی‌بر Graph
+دیتابیس‌های مبتنی‌ بر گراف اصولاً بر اساس مدلی تحت‌ عنوان Entity-Attribute-Value (موجودیت-ویژگی-مقدار) ساخته می‌شوند؛ موجودیت‌ها به‌ عنوان Node (گره) هم شناخته می‌شوند که دارای یکسری خصوصیات مخصوص به خود هستند. این یک روش بسیار انعطاف‌پذیر برای توضیح اینکه چگونه داده‌ها با دیگر داده‌ها ارتباط دارند است در حالی‌ که دیتابیس‌های قدیمی مثل RDBMS توضیحات مربوط به هر رابطهٔ ممکن را به‌ صورت یک فیلد حاوی Foreign Key (کلید خارجی) و یا جداول میانی ذخیره می‌کنند در حالی که دیتابیس‌های مبتنی‌ بر گراف این اجازه را به شما می‌دهند تا به‌ صورت مجازی هر رابطه‌ای را در لحظه تعریف کنید. از جمله دیتابیس‌های NoSQL مبتنی‌ بر گراف می‌توان به Neo4j ،ArangoDB و OrientDB اشاره کرد به طوری که موارد استفادهٔ آن‌ها شامل موقعیت‌های زیر می‌شود:
+- سیستم‌های شناسایی کلاه‌برداری آنلاین
+- جستجوی مبتنی‌ بر گراف
+- انجام تَسک‌های مختلف در حوزه‌های شبکه و فناوری
+- شبکه‌های اجتماعی و ...
+
+YAML
+YAML: list, dictionary
+JSON: array (ordered-list), object (unordered-list)
+
+----------------------------------------------------------
+
+enabled: yes → {"enabled": true}
+
+enabled: “yes” --→ {"enabled": “yes”}
+
+...........................
+
+dictionary: 
+   - key1: value1
+   - key2: value2
+
+list:
+  - key1=value1
+  - key2=value2
+  
+----------------------------
+emptydictionary: {}
+
+emptylist: []
+---------------------------
+data_multiline: |
+  server {
+        # configuration of HTTP virtual server 1       
+        location /one {
+            # configuration for processing URIs starting with '/one'
+        }
+        location /two {
+            # configuration for processing URIs starting with '/two'
+        }
+    }
+
+.........................................
+
+---
+? >
+  name
+  of
+  key
+: value
+
+
+
+---
+? |
+  name
+  of
+  key
+: value
+
+-----------------------------------------
+defaults: &defanchor
+    user: test
+    pass: test
+
+host1:
+  host: server1
+  <<: *defanchor
+  
+host2:
+  host: server2
+  <<: *defanchor
+
+
+--------------------------------------
+
+[A list of dictionaries]
+
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+    - name: mysql
+      image: mysql:5.7  
+
+MINIO
+
+
+MINIO_OPERATOR
+MinIO Operator brings native support for MinIO, Graphical Console, and Encryption to Kubernetes. 
+
+
+SECURITY
+openvas
+NetSparker
+acunetix
+
+JWT
+Json Web Token
+تصدیق stateless  کاربر
+--------------------------------------
+
+
+CHROME
+
+
+PASSWORDS
+If you want to export/import passwords:
+1. go to: chrome://flags/ and then enable ‘Password import’ flag.
+2. go to chrome://settings/passwords and then export passwords.
+3. change the file and add your entries
+4. go to chrome://settings/passwords and then import passwords.
+5. not to forget to disable flag “Password import” in page chrome://flags/
+
+ESXI
+
+
+VM
+Add a new vmdk file to be a new hard disk for a vm:
+
+$ esxcli storage filesystem list
+ 
+
+
+$ cd /vmfs/volumes/5df62395-421850b9-482c-888888888788
+$ vmkfstools --createvirtualdisk 100G --diskformat thin Debian10OnESXI_4_On2TB.vmdk
+
+
+START
+At the beginning,
+
+[tech] awesome
+[tech] crash course
+
+DEBIAN
+
+
+H.D.D
+$ sudo hdparm -I /dev/sda
+

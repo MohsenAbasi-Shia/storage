@@ -62,79 +62,9 @@ alter table tbl add key  UNIQUE KEY `mdl_authoautlinklogi_useis_uix` (`userid`,`
 </rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="gitlab" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595339678.09" ts_lastsave="1597214438.96" unique_id="4">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1601361564.93" unique_id="32">
 		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="backup" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595339704.43" ts_lastsave="1597503878.22" unique_id="5">
-			<rich_text>On docker:
-
-[Backup]
-$ docker exec -it &lt;gitlab_container&gt; /bin/bash
-    $ /home/git/gitlab/bin/rake gitlab:backup:craete
-    OR
-    $ /var/opt/gitlab/gitlab-rails gitlab:backup:create
-    
-[Restore]
-$ docker cp 1595329046_2020_07_21_12.7.7_gitlab.tar &lt;gitlab_container&gt;:/home/git/data/backups/
-$ docker exec -it &lt;gitlab_container&gt; /bin/bash
-    $ /home/git/gitlab/bin/rake gitlab:backup:restore BACKUP=1595329046_2020_07_21_12.7.7 
-    OR
-    $ /var/opt/gitlab/gitlab-rails gitlab:backup:restore BACKUP=1595329046_2020_07_21_12.7.7
-
-
-----------------------------------------
-[Issue]
-$ rake gitlab pg_dump: aborting because of server version mismatch
-[solution]
-$ docker cp  127_postgresql_1:/usr/lib/postgresql/12   ./
-$ docker cp     ./12      /usr/lib/postgresql/
-$ ln -sf  /usr/lib/postgresql/12/bin/pg_dump        /usr/bin/pg_dump
-</rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="upgrade" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597214438.96" ts_lastsave="1597300758.64" unique_id="11">
-			<rich_text>If Gitlab is running by docker-compose, JUST change image field of file &quot;docker-compose.yml&quot;:
-
-    image: gitlab:12.7.7
-must changed to:
-    image: gitlab:13.2.2
-    
-And then run:
-    $ docker-compose up
-to upgrade Gitlab.
-Just it. an easy way!!!</rich_text>
-		</node>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="git-lfs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597300758.64" ts_lastsave="1597890081.31" unique_id="12">
-		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597300784.98" ts_lastsave="1597313742.55" unique_id="13">
-			<rich_text>
-$ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash 
-$ sudo apt-get install git-lfs
-$ cd project_dir 
-$ git lfs install
-
-$ git lfs track &quot;*.gitlab_backup.tar&quot;
-$ git add .gitattributes
-$ git add &quot;*.gitlab_backup.tar&quot;
-$ git commit -m &quot;Add design file&quot;
-$ git lfs push origin master
-$ git push origin master
-
-
-If still error in pushing, you can do the followings:
-$ git reset --mixed &lt;commit_before_adding_the_large_files&gt;
-$ git add .
-$ git commit -m “new commit”
-$ git lfs track &quot;*.tar&quot;
- $ git push
-
- 
-
-</rich_text>
-		</node>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1600166083.73" unique_id="32">
-		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="sed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890088.34" ts_lastsave="1599464117.06" unique_id="33">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="sed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890088.34" ts_lastsave="1601275230.32" unique_id="33">
 			<rich_text>Add character at the beginning of each line using sed command. For example to add # in front of each line we can use sed command with following syntax:
 
     $ sed 's/^/#/' file.txt
@@ -184,6 +114,14 @@ Trin leading and trailing specfic character (e.g. &quot; and \t and whitespace )
 
 
 </rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="delete_empty_lines" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601274907.53" ts_lastsave="1601274909.06" unique_id="88">
+				<rich_text>sed  '/^$/d' tempdir/temp/rezvan-buckets -i
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="add_text_each_line" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601275230.32" ts_lastsave="1601275231.71" unique_id="89">
+				<rich_text>sed -E 's#^(.*)#mc mirror --overwrite rezvan_host/\1 backup_host/rezvan-\1 \&amp;\&amp; \\#g' &lt;file&gt; 
+</rich_text>
+			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="dpkg" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600065290.03" ts_lastsave="1600065345.31" unique_id="57">
 			<rich_text>
@@ -210,34 +148,100 @@ sudo apt install -f</rich_text>
 				<rich_text family="monospace">Acquire::http::Proxy &quot;http://PROXYSERVERIP:PROXYPORT&quot;;</rich_text>
 			</node>
 		</node>
-	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="git" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497057.54" ts_lastsave="1600247796.48" unique_id="29">
-		<rich_text></rich_text>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="reset" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497072.44" ts_lastsave="1597497074.45" unique_id="30">
-			<rich_text>$ git reset --hard
-$ git clean -f -d -x</rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="upgrade" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601361564.93" ts_lastsave="1601361584.85" unique_id="90">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="from_stretch9_to_buster10" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601361584.85" ts_lastsave="1601361585.93" unique_id="91">
+				<rich_text>1.  backup /etc/apt/sources.list
+2. Change all 'Stretch' to ‘buster’ in this file
+3. apt update
+4. apt upgrade
+5. apt dist-uprgade
+6. reboot
+7. hostnamectl</rich_text>
+			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="git clone" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597866213.53" ts_lastsave="1597866216.87" unique_id="31">
-			<rich_text>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="git" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497057.54" ts_lastsave="1601362856.7" unique_id="29">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="gitlab" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595339678.09" ts_lastsave="1601362839.16" unique_id="4">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="backup" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595339704.43" ts_lastsave="1597503878.22" unique_id="5">
+				<rich_text>On docker:
+
+[Backup]
+$ docker exec -it &lt;gitlab_container&gt; /bin/bash
+    $ /home/git/gitlab/bin/rake gitlab:backup:craete
+    OR
+    $ /var/opt/gitlab/gitlab-rails gitlab:backup:create
+    
+[Restore]
+$ docker cp 1595329046_2020_07_21_12.7.7_gitlab.tar &lt;gitlab_container&gt;:/home/git/data/backups/
+$ docker exec -it &lt;gitlab_container&gt; /bin/bash
+    $ /home/git/gitlab/bin/rake gitlab:backup:restore BACKUP=1595329046_2020_07_21_12.7.7 
+    OR
+    $ /var/opt/gitlab/gitlab-rails gitlab:backup:restore BACKUP=1595329046_2020_07_21_12.7.7
+
+
+----------------------------------------
+[Issue]
+$ rake gitlab pg_dump: aborting because of server version mismatch
+[solution]
+$ docker cp  127_postgresql_1:/usr/lib/postgresql/12   ./
+$ docker cp     ./12      /usr/lib/postgresql/
+$ ln -sf  /usr/lib/postgresql/12/bin/pg_dump        /usr/bin/pg_dump
 </rich_text>
-			<rich_text link="webs https://stackoverflow.com/questions/20280726/how-to-git-clone-a-specific-tag" scale="h1">How to git clone a specific tag</rich_text>
-			<rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="upgrade" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597214438.96" ts_lastsave="1597300758.64" unique_id="11">
+				<rich_text>If Gitlab is running by docker-compose, JUST change image field of file &quot;docker-compose.yml&quot;:
+
+    image: gitlab:12.7.7
+must changed to:
+    image: gitlab:13.2.2
+    
+And then run:
+    $ docker-compose up
+to upgrade Gitlab.
+Just it. an easy way!!!</rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="commands-tricks" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601362856.7" ts_lastsave="1601362856.7" unique_id="92">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="reset" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497072.44" ts_lastsave="1601362869.58" unique_id="30">
+				<rich_text>$ git reset --hard
+$ git clean -f -d -x</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="git clone" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597866213.53" ts_lastsave="1601362876.19" unique_id="31">
+				<rich_text>
+</rich_text>
+				<rich_text link="webs https://stackoverflow.com/questions/20280726/how-to-git-clone-a-specific-tag" scale="h1">How to git clone a specific tag</rich_text>
+				<rich_text>
 
 $ </rich_text>
-			<rich_text family="monospace">git clone --depth 1 --branch &lt;tag_name&gt; &lt;repo_url&gt;
+				<rich_text family="monospace">git clone --depth 1 --branch &lt;tag_name&gt; &lt;repo_url&gt;
 
 --depth 1</rich_text>
-			<rich_text> is optional but if you only need the state at that one revision, you probably want to skip downloading all the history up to that revision.
+				<rich_text> is optional but if you only need the state at that one revision, you probably want to skip downloading all the history up to that revision.
 </rich_text>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="remote" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1598340670.26" ts_lastsave="1598340673.02" unique_id="37">
-			<rich_text>Delete remote branch:
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="remote" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1598340670.26" ts_lastsave="1601362878.75" unique_id="37">
+				<rich_text>Delete remote branch:
     $ git push origin --delete infra1-Dockerize</rich_text>
-			<rich_text foreground="#b21818"> </rich_text>
-			<rich_text>
+				<rich_text foreground="#b21818"> </rich_text>
+				<rich_text>
 ---------------------------------------------------------------------</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600247796.48" ts_lastsave="1601362890.12" unique_id="60">
+				<rich_text>
+</rich_text>
+				<rich_text family="monospace">git config --global http.proxyAuthMethod 'basic'
+
+git config --global https.proxy http://user:pass@proxyserver:port
+</rich_text>
+				<rich_text>
+</rich_text>
+			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="rename-branch" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1599461518.34" ts_lastsave="1599461529.24" unique_id="53">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="rename-branch" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1599461518.34" ts_lastsave="1601362888.01" unique_id="53">
 			<rich_text>
 </rich_text>
 			<rich_text scale="h2">Renaming Git Branch</rich_text>
@@ -273,15 +277,34 @@ If you’ve already pushed the </rich_text>
 That’s it. You have successfully renamed the local and remote Git branch.
 </rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600247796.48" ts_lastsave="1600247823.97" unique_id="60">
-			<rich_text>
-</rich_text>
-			<rich_text family="monospace">git config --global http.proxyAuthMethod 'basic'
+		<node custom_icon_id="0" foreground="" is_bold="False" name="git-lfs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597300758.64" ts_lastsave="1601362900.68" unique_id="12">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597300784.98" ts_lastsave="1597313742.55" unique_id="13">
+				<rich_text>
+$ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash 
+$ sudo apt-get install git-lfs
+$ cd project_dir 
+$ git lfs install
 
-git config --global https.proxy http://user:pass@proxyserver:port
+$ git lfs track &quot;*.gitlab_backup.tar&quot;
+$ git add .gitattributes
+$ git add &quot;*.gitlab_backup.tar&quot;
+$ git commit -m &quot;Add design file&quot;
+$ git lfs push origin master
+$ git push origin master
+
+
+If still error in pushing, you can do the followings:
+$ git reset --mixed &lt;commit_before_adding_the_large_files&gt;
+$ git add .
+$ git commit -m “new commit”
+$ git lfs track &quot;*.tar&quot;
+ $ git push
+
+ 
+
 </rich_text>
-			<rich_text>
-</rich_text>
+			</node>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="DevOps" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1599037083.1" ts_lastsave="1600929023.24" unique_id="40">
@@ -471,20 +494,84 @@ application/x-yaml</rich_text>
 NIST ----→ a security methodology for API implementation
 STIG ----→ a security methodology for API implementation</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="7" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601103883.24" ts_lastsave="1601104041.6" unique_id="86">
-				<rich_text>python3 -m pip install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 --user venv
-sudo     apt-get install python3-venv
-python3.7 -m venv venv
-source venv/bin/activate
-pip3.7 install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 -U pip
-pip3.7 install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 flask
+			<node custom_icon_id="0" foreground="" is_bold="False" name="7" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601103883.24" ts_lastsave="1601128275.32" unique_id="86">
+				<rich_text>$ python3 -m pip install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 --user venv
+$ sudo     apt-get install python3-venv
+$ python3.7 -m venv venv
+$ source venv/bin/activate
+$ pip3.7 install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 -U pip
+$ pip3.7 install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 flask
  
+------------------------------------------------------
+put these lines into a app.py file:
+
+    from flask import Flask
+    from flask import jsonify
+    from flask import request
+
+    app = Flask(__name__)
+    
+    USERS = list()
+
+@app.route(&quot;/api/v1/users&quot;, methods=[&quot;GET&quot;,&quot;POST&quot;])
+def users():
+	if request.method == &quot;GET&quot;:
+		return jsonify(USERS)
+	elif request.method == &quot;POST&quot;:
+		if request.is_json:
+			USERS.append(
+				{
+					&quot;username&quot;: request.get_json()[&quot;username&quot;]
+				}
+			)
+		else:
+			return &quot;Invalid Media Type!&quot;
+				
+	return &quot;OK.&quot;	
+		
+
+@app.route(&quot;/api/v1/users/&lt;username&gt;&quot;)
+def user(username):
+#	found = False
+	for user in USERS:
+		if user[&quot;username&quot;] == username:
+#			found = True
+			return {&quot;username&quot;: user}
+#	if found == False:
+	return &quot;User not found!&quot;
+
+if __name__ == &quot;__main__&quot;:
+	app.run()
+
+	
+---------------------------------------------------------------------------
+
+$ flask run
+-------------------------------------------------------------------------------
+
+$ curl localhost:5000/api/v1/users -H 'Content-type: application/json' -d '{&quot;username&quot;: &quot;MAHDI&quot;}' -X POST
+
+Add these lines to a file named “.flaskenv”
+
+    FLASK_APP=hello.py 
+    FLASK_ENV=development 
+    FLASK_DEBUG=1
+ 
+
+---------------------------------------------------------------------------
+To have a development environment:
+
+pip3.7 install --proxy http://abbasi-mohsen:admin961@10.10.10.5:8080 python-dotenv
+
 </rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="jinja2-template-engine" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601119568.85" ts_lastsave="1601119568.85" unique_id="87">
+					<rich_text></rich_text>
+				</node>
 			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="tools" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600670157.94" ts_lastsave="1601016162.72" unique_id="72">
 			<rich_text></rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331030.5" ts_lastsave="1600847389.66" unique_id="1">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331030.5" ts_lastsave="1601376793.0" unique_id="1">
 				<rich_text></rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="search" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331040.61" ts_lastsave="1595404784.0" unique_id="2">
 					<rich_text>List tags of an image:
@@ -973,6 +1060,59 @@ f48b3893fe9d islam bridge
 $ </rich_text>
 					<rich_text background="#555555">docker inspect --format '{{ .HostConfig.LogConfig }}' redis-server</rich_text>
 					<rich_text>
+
+</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601376793.0" ts_lastsave="1601377164.64" unique_id="93">
+					<rich_text>If you need a proxy to install docker:
+
+Steps:
+1. apt install tor
+2. Change file /etc/tor/torrc if you need pass tor traffic via a proxy:
+##manual changes 
+</rich_text>
+					<rich_text weight="heavy">HTTPSProxy</rich_text>
+					<rich_text> 10.10.10.5:8080 
+ 
+</rich_text>
+					<rich_text weight="heavy">HTTPSProxyAuthenticator</rich_text>
+					<rich_text> abbasi-mohsen:admin961 
+
+Also if you need use a tor bridge: 
+##Bridge 
+#UseBridges 1 
+#ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy 
+#Bridge obfs4 185.220.101.40:55080 F49B663186705FEFF7B4776D086B8A81D1ED3F4F cert=p9L6+25s8bnfkye1ZxFeAE4mAGY7DH4Gaj7dxngIIzP9BtqrHHwZXdjMK0RVIQ34C7aqZw iat-mode=0
+ 
+
+3. apt install apt-transport-tor
+4. apt-get remove docker docker-engine docker.io containerd runc 
+5. apt-get update
+6. apt-get install \ 
+    apt-transport-https \ 
+    ca-certificates \ 
+    curl \ 
+    gnupg-agent \ 
+    software-properties-common 
+7. torify curl -fsSL https://download.docker.com/linux/debian/gpg |  apt-key add - \
+8. apt-key fingerprint 0EBFCD88
+9. add-apt-repository \ 
+   &quot;deb [arch=amd64] https://download.docker.com/linux/debian \ 
+   $(lsb_release -cs) \ 
+   stable&quot; 
+10. Change file /etc/apt/sources.list:
+ Change 
+    deb [arch=amd64] https://download.docker.com/linux/debian buster stable
+ into:
+     deb [arch=amd64]</rich_text>
+					<rich_text weight="heavy"> tor+</rich_text>
+					<rich_text>https://download.docker.com/linux/debian buster stable
+ 
+
+ 9. $ sudo apt-get update
+ 10. apt-get install docker-ce docker-ce-cli containerd.io
+ 
+
 
 </rich_text>
 				</node>
