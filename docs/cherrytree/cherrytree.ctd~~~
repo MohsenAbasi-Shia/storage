@@ -110,18 +110,9 @@ docker exec -i mysql_mysql_1 mysqldump --single-transaction=TRUE --triggers --ro
 </rich_text>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="postgres" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602735638.04" ts_lastsave="1603876227.82" unique_id="118">
-			<rich_text>Commands:
-show databases -→ \l
-use &lt;db&gt;   -→  \c &lt;db&gt;
-show tables like ‘*table*’ -→ \dt *table*
-select * from table where user_key like ‘%pattern%’ -----→  select * from table where user_key like '%pattern%'
-
-...............................................
-List users -→ \du
-psql&gt; Select * from pg_roles;
-.......................</rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="exec_command_on_docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603876246.12" ts_lastsave="1603876282.1" unique_id="136">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="postgres" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602735638.04" ts_lastsave="1604902527.02" unique_id="118">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="exec_command_on_docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603876246.12" ts_lastsave="1603885718.57" unique_id="136">
 				<rich_text>#/bin/bash
 if [[ &quot;$1&quot; == &quot;create&quot; ]] 
 then 
@@ -133,11 +124,49 @@ mi; GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO kazemi; GRANT ALL 
 elif [[ &quot;$1&quot; == &quot;drop&quot; ]] 
 then  
         </rich_text>
-				<rich_text weight="heavy">docker-compose exec  postgres psql -U ghesmat -t -c &quot;drop owned by kazemi;drop user kazemi;&quot;</rich_text>
+				<rich_text weight="heavy">docker-compose exec  postgres psql -U ghesmat -t -c &quot;drop owned by kazemi; drop user kazemi;&quot;</rich_text>
 				<rich_text> 
 fi
+..........................................
+
+#/bin/bash
+#Select privilege
+
+if [[ &quot;$1&quot; == &quot;create&quot; ]] 
+then 
+        </rich_text>
+				<rich_text weight="heavy">docker-compose exec  postgres psql -U ghesmat -t -c &quot;create user kazemi with login encrypted password 'ppp'; grant connect on database ghesmat to kazemi;grant select on all 
+tables in schema public to kazemi;  grant select on all sequences in schema public to kazemi;&quot; 
+ </rich_text>
+				<rich_text>
+elif [[ &quot;$1&quot; == &quot;drop&quot; ]] 
+then  
+        </rich_text>
+				<rich_text weight="heavy">docker-compose exec  postgres psql -U ghesmat -t -c &quot;drop owned by kazemi;drop user kazemi;&quot;</rich_text>
+				<rich_text> 
+ fi
+ 
  
 </rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="pg_dump" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1604902047.55" ts_lastsave="1604902058.22" unique_id="139">
+				<rich_text weight="heavy">nohup docker exec sabt_postgres_1 pg_dumpall -U sabt -h localhost --file=/var/lib/postgres/data/dump-08112020.sql  &amp;</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="t-sql" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1604902513.62" ts_lastsave="1604902519.81" unique_id="140">
+				<rich_text>Commands:
+show databases -→ \l
+use &lt;db&gt;   -→  \c &lt;db&gt;
+show tables like ‘*table*’ -→ \dt *table*
+select * from table where user_key like ‘%pattern%’ -----→  select * from table where user_key like '%pattern%'
+
+...............................................
+List users -→ \du
+psql&gt; Select * from pg_roles;
+.......................</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="data_directory" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1604902527.02" ts_lastsave="1604902541.6" unique_id="141">
+				<rich_text>psql# </rich_text>
+				<rich_text weight="heavy">show data_directory</rich_text>
 			</node>
 		</node>
 	</node>
@@ -877,7 +906,7 @@ Usage:
 docker exec -it &lt;your_registry_container_id&gt; ls -a /var/lib/registry/docker/registry/v2/repositories/postgresql/_manifests/tags</rich_text>
 					</node>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="docker-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595336682.55" ts_lastsave="1599453919.59" unique_id="3">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="docker-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595336682.55" ts_lastsave="1604905054.1" unique_id="3">
 					<rich_text>1. Run this command to download the current stable release of Docker Compose:
 sudo</rich_text>
 					<rich_text family="monospace" foreground="#658b00"> </rich_text>
@@ -987,6 +1016,13 @@ cache:
 						<rich_text family="monospace">depends_on</rich_text>
 						<rich_text> were used, this wouldn't be possible, but the startup order of the containers would be correct.
 </rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="check_status" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1604905054.1" ts_lastsave="1604905061.34" unique_id="142">
+						<rich_text family="monospace" weight="heavy">if [ -z `docker-compose ps -q &lt;service_name&gt;` ] || [ -z `docker ps -q --no-trunc | grep $(docker-compose ps -q &lt;service_name&gt;)` ]; then
+  echo &quot;No, it's not running.&quot;
+else
+  echo &quot;Yes, it's running.&quot;
+fi</rich_text>
 					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="container" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595428823.85" ts_lastsave="1598517982.4" unique_id="7">
@@ -2124,11 +2160,90 @@ $ vi nginx.yaml
 $ docker run -v /var/run/docker.sock:/var/run/docker.sock -v /home/rancher:/data docker/compose -f /data/nginx.yaml up -d</rich_text>
 				</node>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="fluent-bit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603709065.8" ts_lastsave="1603709159.11" unique_id="134">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="fluent-bit" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603709065.8" ts_lastsave="1604992216.0" unique_id="134">
 				<rich_text>$ sudo docker run --rm --name fluentbit fluent/fluent-bit:1.6 /fluent-bit/bin/fluent-bit -i cpu -o stdout
 $ sudo docker run --rm --name fluentbit fluent/fluent-bit:1.6 /fluent-bit/bin/fluent-bit -i mem -o stdout
 $ sudo docker run --rm --network=host --name fluentbit fluent/fluent-bit:1.6 /fluent-bit/bin/fluent-bit -i netif -p interface=wlp0 -o stdout
+.............................................................................................</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="docker-container-logs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1604992236.54" ts_lastsave="1605012153.1" unique_id="143">
+					<rich_text>
+Steps:
+
+0/Launch Nginx and change 'Log_format' in nginx.conf file into Logfmt format (e.g. key-&gt;value).
+
+1/
+1.a/    $ </rich_text>
+					<rich_text weight="heavy">sudo docker run --rm --network=host --name fluentbit fluent/fluent-bit:1.6 /fluent-bit/bin/fluent-bit -i forward -o stdout
 </rich_text>
+					<rich_text>
+1.b/    $ </rich_text>
+					<rich_text weight="heavy">vi fbit.conf</rich_text>
+					<rich_text>
+
+
+@include nginx-format.conf
+
+[INPUT] 
+</rich_text>
+					<rich_text style="italic">[4-spaces]</rich_text>
+					<rich_text>Name forward 
+    Match * 
+
+[FILTER]
+    Name parser
+    Match *
+    Parser nginx
+    Key_Name log
+    
+[OUTPUT] 
+    Name loki 
+    Host loki 
+    Port 3100 
+    Labels job=fluent-bit 
+    Label_Keys $container_name
+
+1.c/    $ </rich_text>
+					<rich_text weight="heavy">vi nginx-format.conf</rich_text>
+					<rich_text>
+
+[PARSER]
+    Name nginx
+    Format logfmt
+ 
+1.d/
+    $ </rich_text>
+					<rich_text weight="heavy">sudo docker run --rm --network=host -v $(pwd)/fbit.conf:/fluent-bit/etc/fluent-bit.conf --name fluentbit fluent/fluent-bit:1.6
+</rich_text>
+					<rich_text>
+
+2/
+    docker-compose.yaml
+
+    Services:
+        service1:    
+            logging: 
+                driver: fluentd 
+                options: 
+                fluentd-address: localhost:24224
+
+3/ Launch Loki
+    $ sudo docker run --rm --name loki --network=host -v &lt;path&gt;:/loki grafana/loki
+    
+4/ Launch Grafana:
+    $ </rich_text>
+					<rich_text weight="heavy">sudo docker run --rm --network=host --name grafana grafana/grafana                     
+ </rich_text>
+					<rich_text>
+Grafana panel: 
+    Log labels: {container_name=&quot;/&lt;name&gt;&quot;} |= “source” |= “stderr”
+
+Grafana dashboards:
+  Download JSON
+      
+             
+ 
+</rich_text>
+				</node>
 			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="jwt" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600929023.24" ts_lastsave="1602401046.22" unique_id="79">
@@ -2184,11 +2299,28 @@ $ vmkfstools --createvirtualdisk 100G --diskformat thin Debian10OnESXI_4_On2TB.v
 [tech] awesome
 [tech] crash course</rich_text>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="Debian" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1593077458.14" ts_lastsave="1593077511.97" unique_id="27">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="Debian" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1593077458.14" ts_lastsave="1604219196.09" unique_id="27">
 		<rich_text>
 </rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="H.D.D" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1593077511.97" ts_lastsave="1593077516.22" unique_id="28">
 			<rich_text>$ sudo hdparm -I /dev/sda</rich_text>
+		</node>
+	</node>
+	<node custom_icon_id="0" foreground="" is_bold="False" name="aqr" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1604219196.09" ts_lastsave="1604219216.69" unique_id="137">
+		<rich_text></rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="Rezvan_Razavi_b ackend" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1604219216.69" ts_lastsave="1604222921.92" unique_id="138">
+			<rich_text>[database- run sql query]
+
+</rich_text>
+			<rich_text underline="single">[174]</rich_text>
+			<rich_text>  </rich_text>
+			<rich_text weight="heavy"># docker cp ./sql_0810.sql razaviapp_mysql_1:/ &amp;&amp;  docker  exec -it razaviapp_mysql_1 /bin/sh -c 'mysql -u rezvan_user -p astan_db &lt; /sql_0810.sql'
+</rich_text>
+			<rich_text>
+
+
+
+</rich_text>
 		</node>
 	</node>
 </cherrytree>
