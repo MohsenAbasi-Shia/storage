@@ -294,7 +294,7 @@ GRANT </rich_text>
 # netsh winhttp reset proxy</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1612432059.74" unique_id="21">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1612670554.12" unique_id="21">
 		<rich_text>
 </rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="sed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890088.34" ts_lastsave="1601275230.32" unique_id="22">
@@ -456,7 +456,7 @@ Pin-Priority: 900
 </rich_text>
 			<rich_text link="webs https://unix.stackexchange.com/a/99368/176019">https://unix.stackexchange.com/a/99368/176019</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="bash" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601802540.14" ts_lastsave="1601802544.21" unique_id="34">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="bash" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601802540.14" ts_lastsave="1613640976.97" unique_id="34">
 			<rich_text>
 </rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="while" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601802544.21" ts_lastsave="1601802714.61" unique_id="35">
@@ -473,6 +473,20 @@ SSH is reading from input file. so the while loop is executed only for the 1st l
                         echo &quot;Touch file: $server on server ${server}&quot;
                         ssh -n -o StrictHostKeyChecking=no root@${server} &quot;touch ./${server}&quot;                        
                     done </rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="sed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613640976.97" ts_lastsave="1613641018.14" unique_id="219">
+				<rich_text>Write a file in each directory:
+
+for </rich_text>
+				<rich_text weight="heavy">var</rich_text>
+				<rich_text> in </rich_text>
+				<rich_text weight="heavy">{1..5}; do</rich_text>
+				<rich_text> sed &quot;s/7000/700</rich_text>
+				<rich_text weight="heavy">$var</rich_text>
+				<rich_text>/g&quot; redis.conf &gt; 700</rich_text>
+				<rich_text weight="heavy">${var}</rich_text>
+				<rich_text>/redis.conf;done
+</rich_text>
 			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="gnome" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602500330.14" ts_lastsave="1602500331.66" unique_id="36">
@@ -773,6 +787,12 @@ Verify that the swap is active by using either the swapon or the free command , 
 NAME      TYPE  SIZE   USED PRIO
 /swapfile file 1024M 507.4M   -1
 sudo free -h</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="service-port" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612670554.12" ts_lastsave="1612670727.69" unique_id="208">
+			<rich_text>$ </rich_text>
+			<rich_text weight="heavy">sudo nmap </rich_text>
+			<rich_text>-T Aggressive -A</rich_text>
+			<rich_text weight="heavy"> -v 127.0.0.1 -p 1-65000</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="git" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497057.54" ts_lastsave="1611654922.62" unique_id="50">
@@ -1516,10 +1536,10 @@ spec:
 				</node>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="tools" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600670157.94" ts_lastsave="1610949257.16" unique_id="100">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="tools" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600670157.94" ts_lastsave="1613629903.4" unique_id="100">
 			<rich_text>
 </rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331030.5" ts_lastsave="1610788699.76" unique_id="101">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331030.5" ts_lastsave="1612774146.16" unique_id="101">
 				<rich_text>
 </rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="search" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331040.61" ts_lastsave="1595404784.0" unique_id="102">
@@ -1724,6 +1744,15 @@ Network ‘89678bjsd87786ashvhvasd’ Not found
 [solution]
 sudo docker-compose up --force-recreate -d</rich_text>
 						</node>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="install-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601378827.65" ts_lastsave="1613467754.8" unique_id="122">
+						<rich_text family="monospace" foreground="#e6e6e6e6fafa">curl -L &quot;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</rich_text>
+						<rich_text>
+
+</rich_text>
+						<rich_text family="monospace">chmod +x /usr/local/bin/docker-compose</rich_text>
+						<rich_text>
+</rich_text>
 					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="container" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595428823.85" ts_lastsave="1598517982.4" unique_id="109">
@@ -2096,15 +2125,6 @@ Also if you need use a tor bridge:
  10. apt-get install docker-ce docker-ce-cli containerd.io
  </rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="install-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601378827.65" ts_lastsave="1601378883.62" unique_id="122">
-					<rich_text family="monospace" foreground="#e6e6e6e6fafa">curl -L &quot;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</rich_text>
-					<rich_text>
-
-</rich_text>
-					<rich_text family="monospace">chmod +x /usr/local/bin/docker-compose</rich_text>
-					<rich_text>
-</rich_text>
-				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601380011.57" ts_lastsave="1610786776.46" unique_id="123">
 					<rich_text>You can set the proxy config in the services </rich_text>
 					<rich_text link="webs https://docs.docker.com/config/daemon/systemd/#httphttps-proxy">systemd</rich_text>
@@ -2386,8 +2406,95 @@ $</rich_text>
 ------------------------------------</rich_text>
 					</node>
 				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="notes" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612774146.16" ts_lastsave="1612774161.93" unique_id="211">
+					<rich_text></rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="EBook-docker_up_running" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612774161.93" ts_lastsave="1613307557.81" unique_id="212">
+						<rich_text>[p:96]
+The important thing to understand is that image layers are strictly additive in nature. Once a layer is created, nothing can be removed from it. This means that you cannot make earlier layers in an image smaller by deleting files in subsequent layers. When you delete or edit files in subsequent layers, you’re simply masking the older version with the modified or removed version in the new layer. This means that the only way you can make a layer smaller is by removing files before you save the layer.
+
+The most common way to deal with this is by stringing commands together on a single Dockerfile line. You can do this very easily by taking advantage of the &amp;&amp; operator. 
+
+</rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="image-layers" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612861534.62" ts_lastsave="1612861534.62" unique_id="213">
+							<rich_text></rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="health-check" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612861546.36" ts_lastsave="1612861897.46" unique_id="214">
+							<rich_text>[p:157]
+
+</rich_text>
+							<rich_text weight="heavy">[Step1]</rich_text>
+							<rich_text>
+</rich_text>
+							<rich_text weight="heavy">$ vi docker-healthcheck:
+</rich_text>
+							<rich_text>
+#!/bin/bash 
+set -eo pipefail 
+ 
+host=&quot;$(hostname --ip-address || echo '127.0.0.1')&quot; 
+ 
+if mongo --quiet &quot;$host/test&quot; --eval 'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)'; then 
+        exit 0 
+fi 
+ 
+exit 1
+ 
+</rich_text>
+							<rich_text weight="heavy">[Step2]</rich_text>
+							<rich_text>
+Add to end of </rich_text>
+							<rich_text weight="heavy">Dockerfile</rich_text>
+							<rich_text>:
+
+</rich_text>
+							<rich_text weight="heavy">HEALTHCHECK CMD [&quot;docker-healthcheck&quot;]</rich_text>
+							<rich_text>
+
+.........................
+$ docker run --health-start-period
+.................
+
+$ docker inspect --format='{{.State.Health.Status}}' mongo-hc
+healthy
+
+$ docker inspect --format='{{json .State.Health}}' mongo-hc | jq
+{
+&quot;Status&quot;:&quot;healthy&quot;,
+&quot;FailingStreak&quot;:0,
+&quot;Log&quot;:[
+...
+]
+}
+................................
+
+As with most systems, you can configure a lot of details about your health checks, including how often Docker checks the health (</rich_text>
+							<rich_text weight="heavy">--health-interval</rich_text>
+							<rich_text>), how many failures are required to cause the container to be marked unhealthy (</rich_text>
+							<rich_text weight="heavy">--health-retries</rich_text>
+							<rich_text>), and more. You can even disable the health check completely (--no-healthcheck) if needed.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="cgroup" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613037569.7" ts_lastsave="1613037571.85" unique_id="215">
+							<rich_text>[P:269]
+$ ls /sys/fs/cgroup/cpu/docker/dcbbaa763daf
+cgroup.clone_children cpu.cfs_period_us cpu.rt_runtime_us notify_on_release
+cgroup.event_control cpu.cfs_quota_us cpu.shares tasks
+cgroup.procs cpu.rt_period_us cpu.stat
+
+Note
+The exact path here will change a bit depending on the Linux distribution your Docker server is running on and what the hash of your container is. For example, on CoreOS, the path would look something like:
+/sys/fs/cgroup/cpu/system.slice/docker-8122be2d7a67a52e949582f6d5 cb2771a8469ab20ecf7b6915e9217d92ddde98.scope/
+You can see that under cgroups, there is a docker directory that contains all of the Docker containers that are running on this host. You can’t set cgroups for things that aren’t running, because they apply only to running processes. This is an important point that you should consider. Docker takes care of reapplying cgroup settings for you when you start and stop containers. Without that mechanism, you are somewhat on your own.</rich_text>
+						</node>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="nsenter" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613307557.81" ts_lastsave="1613307571.2" unique_id="216">
+							<rich_text>$ sudo docker inspect redis --format '{{.State.Pid}}
+$ sudo nsenter --target 32656 --mount --uts --ipc --net --pid
+
+</rich_text>
+						</node>
+					</node>
+				</node>
 			</node>
-			<node custom_icon_id="0" foreground="#0000ff" is_bold="True" name="Kubernetes" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293713.65" ts_lastsave="1606557582.07" unique_id="132">
+			<node custom_icon_id="0" foreground="#0000ff" is_bold="True" name="Kubernetes" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293713.65" ts_lastsave="1612694285.55" unique_id="132">
 				<rich_text>$ kubectl apply -f app.yml
 $ kubectl get deployment</rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="app.yaml" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293759.3" ts_lastsave="1593077388.2" unique_id="133">
@@ -2610,16 +2717,26 @@ To use the above plugin, simply make it executable:
 						<rich_text>. Krew helps you discover plugins, install and manage them on your machine.</rich_text>
 					</node>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="k3s_vs_k8s" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603863573.38" ts_lastsave="1603863579.0" unique_id="142">
-					<rich_text>ابزار k3s یک توزیع کوچک از کوبرنتیز هست برای سیستم های با منابع کم مانند IOT و Age و ...
-</rich_text>
-				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="max" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606557582.07" ts_lastsave="1606557645.84" unique_id="143">
 					<rich_text>#max pod per node: 100
 #max pods: 150,000 صد و پنجاه هزار
 #max nodes: 1500
 #max containers: 300000 سیصد هزار
  </rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="k3s" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612694285.55" ts_lastsave="1612694307.3" unique_id="209">
+					<rich_text></rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="k3s_vs_k8s" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603863573.38" ts_lastsave="1612694289.42" unique_id="142">
+						<rich_text>ابزار k3s یک توزیع کوچک از کوبرنتیز هست برای سیستم های با منابع کم مانند IOT و Age و ...
+</rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612694307.3" ts_lastsave="1612694366.71" unique_id="210">
+						<rich_text>$ sudo curl -x http://proxy.aqr.ir:8080 -sfL </rich_text>
+						<rich_text link="webs https://get.k3s.io">https://get.k3s.io</rich_text>
+						<rich_text> &gt; k3s-install.sh
+$ sudo torify /bin/bash ./k3s-install.sh
+</rich_text>
+					</node>
 				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="CI/CD" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1593581674.07" ts_lastsave="1600670293.07" unique_id="144">
@@ -3383,6 +3500,73 @@ update cwd_user_attribute set attribute_value = '0', attribute_lower_value = '0'
 					<rich_text family="monospace" weight="heavy">&gt;</rich_text>
 					<rich_text family="monospace">;</rich_text>
 					<rich_text>
+</rich_text>
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="redis" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613629903.4" ts_lastsave="1613629912.01" unique_id="217">
+				<rich_text></rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="replication" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613629912.01" ts_lastsave="1613630309.42" unique_id="218">
+					<rich_text>master (10.10.10.1) → replica (10.10.10.2)
+----------------------------------
+[</rich_text>
+					<rich_text weight="heavy">replica</rich_text>
+					<rich_text>]
+</rich_text>
+					<rich_text weight="heavy">docker-compose.yml</rich_text>
+					<rich_text>:
+            services
+              redis: 
+                image: redis:latest 
+                command: redis-server --masterauth &quot;${REDIS_MASTER_PASSWORD}&quot; --slaveof ${REDIS_MASTER_IP} ${REDIS_MASTER_PORT}  --requirepass &quot;${REDIS_PASSWORD}&quot; 
+                restart: always 
+                volumes: 
+                  - ./volumes/redis:/data 
+                  - ./files/redis.conf:/usr/local/etc/redis/redis.conf:ro 
+                ports: 
+                  - ${REDIS_PORT}:6379
+</rich_text>
+					<rich_text weight="heavy">.env</rich_text>
+					<rich_text>:
+            #Cache 
+            REDIS_HOST=10.10.10.2
+            REDIS_PASSWORD=pwd
+            REDIS_PORT=6380
+            REDIS_MASTER_PASSWORD=master_pwd
+            REDIS_MASTER_IP=</rich_text>
+					<rich_text weight="heavy">10.10.10.1</rich_text>
+					<rich_text> 
+            REDIS_MASTER_PORT=</rich_text>
+					<rich_text weight="heavy">6381</rich_text>
+					<rich_text>
+--------------------------------------------
+[</rich_text>
+					<rich_text weight="heavy">master</rich_text>
+					<rich_text>]
+</rich_text>
+					<rich_text weight="heavy">docker-compose.yml</rich_text>
+					<rich_text>:
+          redis:
+            image: redis:latest
+            command: redis-server --requirepass &quot;${REDIS_PASSWORD}&quot; 
+            restart: always 
+            volumes: 
+              - ./volumes/redis:/data 
+              - ./files/redis.conf:/usr/local/etc/redis/redis.conf:ro 
+            ports: 
+              - ${REDIS_PORT}:6379
+
+</rich_text>
+					<rich_text weight="heavy">.env</rich_text>
+					<rich_text>:
+            #Cache 
+            REDIS_HOST=</rich_text>
+					<rich_text weight="heavy">10.10.10.1</rich_text>
+					<rich_text>
+            REDIS_PASSWORD=master_pwd 
+            REDIS_PORT=</rich_text>
+					<rich_text weight="heavy">6381</rich_text>
+					<rich_text>
+
 </rich_text>
 				</node>
 			</node>
