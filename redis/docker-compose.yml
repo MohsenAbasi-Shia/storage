@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:5.0.0
+    container_name: master
+    command: redis-server --requirepass "${REDIS_PWD}"
+    ports:
+      - "6379:6379"
+    networks:
+      - redis-replication
+networks:
+  redis-replication:
+    driver: bridge

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  redis:
+    image: redis:5.0.0
+    command: redis-server /redis.conf
+    volumes:
+      - ./redis.conf:/redis.conf
+    networks:
+      - redis-cluster
+
+networks:
+  redis-cluster:
+    external:
+      name: redis-cluster

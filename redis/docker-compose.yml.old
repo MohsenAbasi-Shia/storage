@@ -1,0 +1,11 @@
+services:
+  redis:
+    image: redis:latest
+    command: redis-server --requirepass "${REDIS_PWD}"
+    restart: always
+    volumes:
+      - ./volumes/redis:/data
+      - ./files/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    ports:
+      - 6380:6379
+
