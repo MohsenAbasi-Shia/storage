@@ -119,7 +119,7 @@ docker exec -i mysql_mysql_1 mysqldump --single-transaction=TRUE --triggers --ro
 </rich_text>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="postgres" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602735638.04" ts_lastsave="1611732682.88" unique_id="11">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="postgres" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602735638.04" ts_lastsave="1614406365.8" unique_id="11">
 			<rich_text></rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="exec_command_on_docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603876246.12" ts_lastsave="1603885718.57" unique_id="12">
 				<rich_text>#/bin/bash
@@ -283,6 +283,13 @@ GRANT </rich_text>
 
 </rich_text>
 			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="vacuum" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614406365.8" ts_lastsave="1614406367.72" unique_id="227">
+				<rich_text family="monospace">SELECT
+    schemaname, relname,
+    last_vacuum, last_autovacuum,
+    vacuum_count, autovacuum_count  -- not available on 9.0 and earlier
+FROM pg_stat_user_tables;</rich_text>
+			</node>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="windows" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1599389178.53" ts_lastsave="1599389191.31" unique_id="19">
@@ -294,7 +301,7 @@ GRANT </rich_text>
 # netsh winhttp reset proxy</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1612670554.12" unique_id="21">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1614769134.31" unique_id="21">
 		<rich_text>
 </rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="sed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890088.34" ts_lastsave="1601275230.32" unique_id="22">
@@ -456,7 +463,7 @@ Pin-Priority: 900
 </rich_text>
 			<rich_text link="webs https://unix.stackexchange.com/a/99368/176019">https://unix.stackexchange.com/a/99368/176019</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="bash" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601802540.14" ts_lastsave="1601802544.21" unique_id="34">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="bash" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601802540.14" ts_lastsave="1613640976.97" unique_id="34">
 			<rich_text>
 </rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="while" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601802544.21" ts_lastsave="1601802714.61" unique_id="35">
@@ -474,15 +481,33 @@ SSH is reading from input file. so the while loop is executed only for the 1st l
                         ssh -n -o StrictHostKeyChecking=no root@${server} &quot;touch ./${server}&quot;                        
                     done </rich_text>
 			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="sed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613640976.97" ts_lastsave="1613641018.14" unique_id="219">
+				<rich_text>Write a file in each directory:
+
+for </rich_text>
+				<rich_text weight="heavy">var</rich_text>
+				<rich_text> in </rich_text>
+				<rich_text weight="heavy">{1..5}; do</rich_text>
+				<rich_text> sed &quot;s/7000/700</rich_text>
+				<rich_text weight="heavy">$var</rich_text>
+				<rich_text>/g&quot; redis.conf &gt; 700</rich_text>
+				<rich_text weight="heavy">${var}</rich_text>
+				<rich_text>/redis.conf;done
+</rich_text>
+			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="gnome" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602500330.14" ts_lastsave="1602500331.66" unique_id="36">
 			<rich_text>gnome → uses GTK+ toolkit
 KDE → uses Qt toolkit</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="scp" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602759233.58" ts_lastsave="1602759240.1" unique_id="37">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="scp" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602759233.58" ts_lastsave="1613795449.1" unique_id="37">
 			<rich_text></rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="exclude" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602759240.11" ts_lastsave="1602759261.39" unique_id="38">
 				<rich_text></rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="argument-list-too-long" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613795449.1" ts_lastsave="1613795462.59" unique_id="220">
+				<rich_text weight="heavy">$ rsync -av --include='*.*' saheb@remote-ip:~/shares/mount/ ./
+</rich_text>
 			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="tar" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603110543.98" ts_lastsave="1603110608.2" unique_id="39">
@@ -725,11 +750,13 @@ iface enp1s0 inet static
 </rich_text>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="swap" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612432059.74" ts_lastsave="1612432210.63" unique_id="207">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="swap" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612432059.74" ts_lastsave="1614657307.91" unique_id="207">
 			<rich_text>Creating a Swap File
 The user you are logged in as must have sudo privileges to be able to activate swap. In this example, we will add 1G swap. If you want to add more swap, replace 1G with the size of the swap space you need.
 
-Perform the steps below to add swap space on Ubuntu 18.04.
+Perform the steps below to </rich_text>
+			<rich_text weight="heavy">add swap space</rich_text>
+			<rich_text> on Ubuntu 18.04.
 
 Start by creating a file which will be used for swap:
 
@@ -780,8 +807,30 @@ sudo free -h</rich_text>
 			<rich_text>-T Aggressive -A</rich_text>
 			<rich_text weight="heavy"> -v 127.0.0.1 -p 1-65000</rich_text>
 		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="count_char" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613992822.38" ts_lastsave="1613992833.23" unique_id="223">
+			<rich_text weight="heavy">$ fgrep -o ',' delete_from_vicarious_pilgrimage.sql | wc -l</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="zfs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614222810.75" ts_lastsave="1614222817.97" unique_id="225">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="add_new_disk" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614222817.97" ts_lastsave="1614222847.74" unique_id="226">
+				<rich_text>zpool iostat 
+</rich_text>
+				<rich_text weight="heavy">zpool add docker /dev/sdf  </rich_text>
+				<rich_text>
+zpool iostat
+ zpool status</rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="diff_2_inputs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614769134.31" ts_lastsave="1614769146.15" unique_id="229">
+			<rich_text>$ diff &lt;(</rich_text>
+			<rich_text weight="heavy">sed -e 's/=.*//g' .env</rich_text>
+			<rich_text>) &lt;(</rich_text>
+			<rich_text weight="heavy">sed -e 's/=.*//g' .env.example</rich_text>
+			<rich_text>)
+</rich_text>
+		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="git" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497057.54" ts_lastsave="1611654922.62" unique_id="50">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="git" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497057.54" ts_lastsave="1613801659.14" unique_id="50">
 		<rich_text>
 </rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="gitlab" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595339678.09" ts_lastsave="1601362839.16" unique_id="51">
@@ -965,6 +1014,18 @@ $ </rich_text>
 			<rich_text>$ </rich_text>
 			<rich_text family="monospace">git reset --hard &lt;sha1-commit-id&gt;
 $ git push --force</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="error" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613801659.14" ts_lastsave="1613801663.76" unique_id="221">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="Received HTTP code 502 from proxy after CONNECT" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613801663.76" ts_lastsave="1613801666.47" unique_id="222">
+				<rich_text>git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+unset HTTP_PROXY
+unset HTTPS_PROXY
+unset http_proxy
+unset https_proxy </rich_text>
+			</node>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="DevOps" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1599037083.1" ts_lastsave="1609574695.69" unique_id="67">
@@ -1821,7 +1882,7 @@ Options:
 						</row>
 					</table>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="Dockerfile" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1593935098.59" ts_lastsave="1611134790.47" unique_id="113">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="Dockerfile" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1593935098.59" ts_lastsave="1615274498.94" unique_id="113">
 					<rich_text>
 </rich_text>
 					<node custom_icon_id="0" foreground="" is_bold="False" name="Add.vs.Copy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1593935111.26" ts_lastsave="1593935267.54" unique_id="114">
@@ -1992,6 +2053,73 @@ Note that </rich_text>
 						<rich_text background="#000000000000" foreground="#00000000ffff">
 </rich_text>
 					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="maven_proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615274498.94" ts_lastsave="1615276058.08" unique_id="230">
+						<rich_text>FROM oraclejava:8
+
+#RUN echo '' &gt; /etc/apt/apt.conf.d/01proxy
+RUN echo 'Acquire::http::Proxy &quot;proxy</rich_text>
+						<rich_text link="webs http://proxy.aqr.ir:8080&quot;;'">&quot;;'</rich_text>
+						<rich_text> &gt; /etc/apt/apt.conf.d/01proxy
+
+RUN rm -rf /etc/apt/sources.list.d/webupd8team-java.list
+
+RUN set -ex
+RUN apt-get clean
+RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /etc/apt/sources.list.d/*
+RUN apt-get update
+RUN apt-get install -y maven
+SHELL [&quot;/bin/bash&quot;,&quot;-c&quot;]
+RUN mkdir ~/.m2
+RUN touch ~/.m2/settings.xml
+RUN echo $'</rich_text>
+						<rich_text weight="heavy">&lt;settings&gt; \n\
+  		&lt;proxies&gt; \n\
+   			&lt;proxy&gt; \n\
+              &lt;id&gt;proxyaqr&lt;/id&gt; \n\
+              &lt;active&gt;true&lt;/active&gt; \n\
+              &lt;protocol&gt;http&lt;/protocol&gt; \n\
+              &lt;host&gt;.........&lt;/host&gt; \n\
+              &lt;port&gt;8080&lt;/port&gt; \n\
+              &lt;nonProxyHosts&gt;</rich_text>
+						<rich_text link="webs http://www.google.com|*.aqr.ir|*.razavi.ir&lt;/nonProxyHosts&gt;" weight="heavy">www.google.com|*.example.ir&lt;/nonProxyHosts&gt;</rich_text>
+						<rich_text weight="heavy"> \n\
+            &lt;/proxy&gt; \n\
+  		&lt;/proxies&gt; \n\
+  &lt;/settings&gt;</rich_text>
+						<rich_text>' &gt; ~/.m2/settings.xml
+SHELL [&quot;/bin/sh&quot;,&quot;-c&quot;]
+RUN rm -rf /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/*
+
+ARG BRANCH
+ARG USERNAME
+ARG PASSWORD
+WORKDIR /root
+RUN set -e \
+    &amp;&amp; git clone </rich_text>
+						<rich_text link="webs https://$USERNAME:$PASSWORD@bitbucket.itc.razavi.ir/scm/rez/backend.git">https://$USERNAME:$PASSWORD@GIT-DOMAIN.COM/scm/rez/backend.git</rich_text>
+						<rich_text> --depth 1 -b $BRANCH \
+    &amp;&amp; cd backend \
+    &amp;&amp; mvn install
+
+FROM docker.itc.aqr.ir/ict/tomcat:8
+
+ARG BRANCH
+COPY --from=0 /root/backend/target/aqr-$BRANCH.war /usr/local/tomcat/webapps/aqr.war
+COPY files/tomcat-users.xml /usr/local/tomcat/conf/tomcat-users.xml
+COPY files/context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml
+
+RUN apt-get update \
+    &amp;&amp; apt-get install -y ffmpeg
+
+RUN set -ex \
+    &amp;&amp; rm -rf /usr/local/tomcat/webapps/ROOT \
+    &amp;&amp; rm -rf /usr/local/tomcat/webapps/examples \
+    &amp;&amp; rm -rf /usr/local/tomcat/webapps/docs
+
+CMD [&quot;catalina.sh&quot;, &quot;run&quot;]
+</rich_text>
+					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="run" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1599368378.54" ts_lastsave="1599389178.53" unique_id="117">
 					<rich_text>[error]
@@ -2014,7 +2142,7 @@ Add “$(PWD)” to start of the volume source:
 copy file &lt;image.tar&gt; to another machine
 $ docker load -i &lt;image.tar&gt;</rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="network" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600670347.34" ts_lastsave="1600840666.86" unique_id="119">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="network" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600670347.34" ts_lastsave="1614506012.97" unique_id="119">
 					<rich_text>با استفاده از اجرای دستور زیر میتوان شبکه های داکر را لیست کرد:
 
 </rich_text>
@@ -2059,6 +2187,12 @@ f48b3893fe9d islam bridge
  
 </rich_text>
 					<rich_text> </rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="find-out-ip" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614506012.97" ts_lastsave="1614506035.55" unique_id="228">
+						<rich_text>$ </rich_text>
+						<rich_text weight="heavy">docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'</rich_text>
+						<rich_text> &lt;container&gt;
+</rich_text>
+					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="log" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600847389.67" ts_lastsave="1600847473.36" unique_id="120">
 					<rich_text>$ docker run -d --name redis-server --log-driver=[syslog|none] redis
@@ -3369,10 +3503,97 @@ $ curl -SL https://github.com/grammarly/rocker/releases/download/1.3.2/rocker_da
 </rich_text>
 				<rich_text link="webs https://sebest.github.io/post/using-rocker-to-build-minimal-python-docker-images/">https://sebest.github.io/post/using-rocker-to-build-minimal-python-docker-images/</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="sentry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1608986188.46" ts_lastsave="1608986190.84" unique_id="171">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="sentry" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1608986188.46" ts_lastsave="1614161952.34" unique_id="171">
 				<rich_text>Create Auth tokens:
 </rich_text>
 				<rich_text link="webs https://sentry.itc.aqr.ir/settings/account/api/auth-tokens/">https://&lt;sentry-url&gt;/settings/account/api/auth-tokens/</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="docker-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614161952.34" ts_lastsave="1614162038.85" unique_id="224">
+					<rich_text>1. Download docker-compose.yml to dir named </rich_text>
+					<rich_text family="monospace">sentry</rich_text>
+					<rich_text>
+2. Change </rich_text>
+					<rich_text family="monospace">SENTRY_SECRET_KEY</rich_text>
+					<rich_text> to random 32 char string  
+    $ sudo docker run --rm sentry config generate-secret-key
+3. Run </rich_text>
+					<rich_text family="monospace">docker-compose up -d</rich_text>
+					<rich_text>
+4. Run </rich_text>
+					<rich_text family="monospace">docker-compose exec sentry sentry upgrade</rich_text>
+					<rich_text> to setup database and create admin user
+5. (Optional) Run </rich_text>
+					<rich_text family="monospace">docker-compose exec sentry pip install sentry-slack</rich_text>
+					<rich_text> if you want slack plugin, it can be done later
+6. Run </rich_text>
+					<rich_text family="monospace">docker-compose restart sentry</rich_text>
+					<rich_text>
+7. Sentry is now running on public port </rich_text>
+					<rich_text family="monospace">9000</rich_text>
+					<rich_text>
+
+...................................................................................
+
+
+version: '2' 
+ 
+volumes: 
+   pgdb: 
+ 
+services: 
+  redis: 
+    image: redis 
+ 
+  postgres: 
+    image: postgres 
+    environment: 
+      POSTGRES_USER: sentry 
+      POSTGRES_PASSWORD: sentry 
+      POSTGRES_DB: sentry 
+    volumes: 
+     - pgdb:/var/lib/postgresql/data 
+ 
+  sentry: 
+    image: sentry 
+    links: 
+     - redis 
+     - postgres 
+    ports: 
+     - 9000:9000 
+    environment: 
+      SENTRY_SECRET_KEY: '!!!SECRET!!!' 
+      SENTRY_POSTGRES_HOST: postgres 
+      SENTRY_DB_USER: sentry 
+      SENTRY_DB_PASSWORD: sentry 
+      SENTRY_REDIS_HOST: redis 
+ 
+  cron: 
+    image: sentry 
+    links: 
+     - redis 
+     - postgres 
+    command: &quot;sentry run cron&quot; 
+    environment: 
+      SENTRY_SECRET_KEY: '!!!SECRET!!!' 
+      SENTRY_POSTGRES_HOST: postgres 
+      SENTRY_DB_USER: sentry 
+      SENTRY_DB_PASSWORD: sentry 
+      SENTRY_REDIS_HOST: redis 
+ 
+  worker: 
+    image: sentry 
+    links: 
+     - redis 
+     - postgres 
+    command: &quot;sentry run worker&quot; 
+    environment: 
+      SENTRY_SECRET_KEY: '!!!SECRET!!!' 
+      SENTRY_POSTGRES_HOST: postgres 
+      SENTRY_DB_USER: sentry 
+      SENTRY_DB_PASSWORD: sentry 
+      SENTRY_REDIS_HOST: redis
+ 
+</rich_text>
+				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="minio" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1609569849.97" ts_lastsave="1609570118.59" unique_id="172">
 				<rich_text></rich_text>
