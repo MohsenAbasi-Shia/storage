@@ -140,9 +140,8 @@ TRUNCATE table1;</rich_text>
 				</node>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="postgres" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602735638.04" ts_lastsave="1614406365.8" unique_id="11">
-			<rich_text>
-</rich_text>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="postgres" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602735638.04" ts_lastsave="1621322285.8" unique_id="11">
+			<rich_text></rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="exec_command_on_docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603876246.12" ts_lastsave="1603885718.57" unique_id="12">
 				<rich_text>#/bin/bash
 if [[ &quot;$1&quot; == &quot;create&quot; ]] 
@@ -188,6 +187,14 @@ nohup docker exec mehmansara_postgres_1 pg_dumpall -U ghesmat -h localhost --fil
 nohup docker exec sabt_postgres_1 pg_dump -Z9 -Fc -U sabt -h localhost sabt --file=/var/lib/postgresql/data/dump-20122020.sql  &amp;
  
 </rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="issues" prog_lang="sh" readonly="False" tags="" ts_creation="1621322334.26" ts_lastsave="1621322334.26" unique_id="277">
+					<rich_text></rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="lock-busy" prog_lang="sh" readonly="False" tags="" ts_creation="1621322347.48" ts_lastsave="1621322348.56" unique_id="278">
+						<rich_text>/usr/bin/docker exec &lt;container-name&gt; pg_dump -Z9 -Fc -U &lt;user&gt; ...
+
+این دستور هنگام بکاپ گیری دیسک را مشغول میکند و همچنین جداول را lock میکند.</rich_text>
+					</node>
+				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="t-sql" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1604902513.62" ts_lastsave="1604902519.81" unique_id="14">
 				<rich_text>Commands:
@@ -291,8 +298,8 @@ SELECT table_name || '_' || column_name || '_seq',
     reset_sequence(table_name, column_name, table_name || '_' || column_name || '_seq') 
 FROM information_schema.columns where column_default like 'nextval%';</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="show_grants" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611732662.73" ts_lastsave="1611732664.31" unique_id="203">
-				<rich_text>SELECT table_catalog, table_schema, table_name, privilege_type FROM   information_schema.table_privileges  WHERE  grantee = '&lt;user&gt;';</rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="show_grants" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611732662.73" ts_lastsave="1621148267.34" unique_id="203">
+				<rich_text>SELECT table_catalog, table_schema, table_name, privilege_type FROM   information_schema.table_privileges  WHERE  grantee = '&lt;user&gt;'; </rich_text>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="grant" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611732682.88" ts_lastsave="1611732732.31" unique_id="204">
 				<rich_text>\c &lt;db&gt;
@@ -1138,7 +1145,7 @@ Output:
 [sudo] password for username:
 On each new session, you will be prompted to enter the user password.</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="ssh" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1620484771.56" ts_lastsave="1620484784.3" unique_id="270">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="ssh" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1620484771.56" ts_lastsave="1621047678.26" unique_id="270">
 			<rich_text></rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="host-key-verification-failed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1620484784.3" ts_lastsave="1620484786.34" unique_id="271">
 				<rich_text>Find invalid host key by IP:
@@ -1146,6 +1153,19 @@ On each new session, you will be prompted to enter the user password.</rich_text
 
 delete it from ~/.ssh/known_hosts
  
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="check_if_file_exists" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1621047678.26" ts_lastsave="1621048538.97" unique_id="273">
+				<rich_text># ssh root@&lt;IP&gt; &quot;if [ -f &lt;file&gt; ]; then echo 1; else echo 0; fi &quot;
+
+OR
+
+# ssh root@&lt;IP&gt;  test -f  &lt;file&gt; &amp;&amp; echo &quot;YES&quot; || echo &quot;no&quot;
+
+OR
+
+# if [[ $(ssh &quot;&lt;IP&gt;&quot; find &quot;dir&quot; -maxdepth 1 -name &quot;filename&quot; ) != &quot;&quot; ]]; then echo 1; else echo 0; fi
+
 </rich_text>
 			</node>
 		</node>
@@ -2642,7 +2662,7 @@ $ systemd-cgtop
 </rich_text>
 					<rich_text link="webs https://stackoverflow.com/a/48922355/659077">https://stackoverflow.com/a/48922355/659077</rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="issues" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606816249.77" ts_lastsave="1620812437.34" unique_id="129">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="issues" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606816249.77" ts_lastsave="1621052959.69" unique_id="129">
 					<rich_text>
 </rich_text>
 					<node custom_icon_id="0" foreground="" is_bold="False" name="dataset-is-busy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606816263.37" ts_lastsave="1606816266.94" unique_id="130">
@@ -2731,6 +2751,10 @@ Error response from daemon: manifest for </rich_text>
  
 </rich_text>
 					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="nginx-app-not-working-correctly" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1621052959.69" ts_lastsave="1621052960.64" unique_id="275">
+						<rich_text># cd ./volumes &amp;&amp; chown -R www-data:www-data logs session cache temp uploads
+</rich_text>
+					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="nohup" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1607518111.08" ts_lastsave="1607518113.17" unique_id="131">
 					<rich_text>vi main.sh:
@@ -2743,7 +2767,7 @@ $ </rich_text>
 					<rich_text>
 </rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="ssl" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1610788699.76" ts_lastsave="1611378884.66" unique_id="192">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="ssl" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1610788699.76" ts_lastsave="1620815131.81" unique_id="192">
 					<rich_text>$ </rich_text>
 					<rich_text weight="heavy">mkdir -p /etc/docker/ssl &amp;&amp; cd /etc/docker/ssl</rich_text>
 					<rich_text>
@@ -2824,20 +2848,23 @@ $ systemctl edit docker.service
 					<rich_text family="monospace">$ mkdir -pv ~/.docker
 $ cp -v {ca,cert,key}.pem ~/.docker
 
+
+
 </rich_text>
 					<rich_text background="#adadd8d8e6e6" family="monospace">--------------------------------------------------------------</rich_text>
 					<rich_text family="monospace">
+
 $ export DOCKER_HOST=tcp://$HOSTNAME:2376 DOCKER_TLS_VERIFY=1</rich_text>
 					<rich_text>
-$ source ~/.bashrc
+
 </rich_text>
 					<rich_text weight="heavy">OR</rich_text>
 					<rich_text>
 Add above line to  file </rich_text>
 					<rich_text weight="heavy">~/.bashrc</rich_text>
 					<rich_text>
-
 $ source ~/.bashrc
+
 </rich_text>
 					<rich_text background="#adadd8d8e6e6">-------------------------------------------------------------------------------------------------------------</rich_text>
 					<rich_text>
@@ -4445,7 +4472,7 @@ services:
 </rich_text>
 				</node>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="jenkins" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1610275788.72" ts_lastsave="1610275835.0" unique_id="177">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="jenkins" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1610275788.72" ts_lastsave="1621050091.25" unique_id="177">
 				<rich_text>Force stop a job:
 
 docker-compose exec jenkins bash</rich_text>
@@ -4455,6 +4482,23 @@ rm -rf &lt;build-number&gt;
 restart jenkins</rich_text>
 				<rich_text>
 </rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="run_with_bash" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1621050091.26" ts_lastsave="1621050099.95" unique_id="274">
+					<rich_text>The Groovy script you provided is formatting the first line as a blank line in the resultant script. The shebang, telling the script to run with /bin/bash instead of /bin/sh, needs to be on the first line of the file or it will be ignored.
+So instead, you should format your Groovy like this:
+</rich_text>
+					<rich_text family="monospace">stage('Setting the variables values') {
+    steps {
+         sh '''</rich_text>
+					<rich_text family="monospace" weight="heavy">#!/bin/bash</rich_text>
+					<rich_text family="monospace">
+                 echo &quot;hello world&quot; 
+         '''
+    }
+}
+</rich_text>
+					<rich_text>And it will execute with /bin/bash.
+</rich_text>
+				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="crowd" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1610949257.16" ts_lastsave="1610949343.2" unique_id="193">
 				<rich_text>
@@ -4682,7 +4726,7 @@ mysql&gt; 1. UPDATE `matomo_user` SET `password` = &quot;$2y$10$FiknavjTDvUUTSMX
 </rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="python" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1609574695.69" ts_lastsave="1615720632.82" unique_id="179">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="python" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1609574695.69" ts_lastsave="1621255296.37" unique_id="179">
 		<rich_text>
 </rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="pip" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615720632.82" ts_lastsave="1615720646.06" unique_id="239">
@@ -4723,6 +4767,9 @@ mysql&gt; 1. UPDATE `matomo_user` SET `password` = &quot;$2y$10$FiknavjTDvUUTSMX
 			<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="sh" readonly="False" tags="" ts_creation="1615720646.06" ts_lastsave="1615720648.56" unique_id="240">
 				<rich_text>$ sudo apt-get install python3-pip</rich_text>
 			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="http.server" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1621255296.37" ts_lastsave="1621255298.07" unique_id="276">
+			<rich_text>python3 -m http.server</rich_text>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="chrome" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1599112079.36" ts_lastsave="1599112085.29" unique_id="183">
