@@ -298,9 +298,6 @@ SELECT table_name || '_' || column_name || '_seq',
     reset_sequence(table_name, column_name, table_name || '_' || column_name || '_seq') 
 FROM information_schema.columns where column_default like 'nextval%';</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="show_grants" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611732662.73" ts_lastsave="1621148267.34" unique_id="203">
-				<rich_text>SELECT table_catalog, table_schema, table_name, privilege_type FROM   information_schema.table_privileges  WHERE  grantee = '&lt;user&gt;'; </rich_text>
-			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="grant" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611732682.88" ts_lastsave="1611732732.31" unique_id="204">
 				<rich_text>\c &lt;db&gt;
 GRANT </rich_text>
@@ -310,6 +307,9 @@ GRANT </rich_text>
 				<rich_text>;
 
 </rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="show_grants" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611732662.73" ts_lastsave="1622095915.12" unique_id="203">
+					<rich_text>SELECT table_catalog, table_schema, table_name, privilege_type FROM   information_schema.table_privileges  WHERE  grantee = '&lt;user&gt;'; </rich_text>
+				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="vacuum" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614406365.8" ts_lastsave="1614406367.72" unique_id="227">
 				<rich_text family="monospace">SELECT
@@ -590,7 +590,7 @@ $ </rich_text>
 ..........................................
 </rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="rsync" prog_lang="sh" readonly="False" tags="" ts_creation="1606036472.6" ts_lastsave="1621833587.96" unique_id="41">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="rsync" prog_lang="sh" readonly="False" tags="" ts_creation="1606036472.6" ts_lastsave="1622162551.16" unique_id="41">
 			<rich_text>rsync           -ahW       --inplace         --progress      $src       $dst 
 
 rsync           -avhW     --inplace         --progress       --ignore-missing-args     --no-compress          $src            $dst 
@@ -598,7 +598,9 @@ rsync           -avhW     --inplace         --progress       --ignore-missing-ar
 
 [How to exclude a directory]
 nohup rsync --timeout=48000 --exclude=/minio/.minio.sys/ -azvP  ./minio root@&lt;remote-ip&gt;:/root/minio-storage/file/ &gt;&gt; ./rsync.log &amp;
-</rich_text>
+
+[Avoid broken pipe error]
+rsync -e &quot;ssh -o ServerAliveInterval=30&quot; --timeout=48000 --exclude=/minio/.minio.sys/ -azhvPW --inplace  --progress  ./minio root@&lt;remote-IP&gt;:/root/minio-storage/minio-sina-backup/</rich_text>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="symbolic-link" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1608092926.39" ts_lastsave="1608093129.69" unique_id="42">
 			<rich_text>To create a  symlink from ./volumes to /volumes/sentry-20 (</rich_text>
