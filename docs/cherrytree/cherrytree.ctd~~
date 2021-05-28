@@ -2763,7 +2763,7 @@ $ sudo nsenter --target 32656 --mount --uts --ipc --net --pid
 					</node>
 				</node>
 			</node>
-			<node custom_icon_id="0" foreground="#0000ff" is_bold="True" name="Kubernetes" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293713.65" ts_lastsave="1615613638.72" unique_id="132">
+			<node custom_icon_id="0" foreground="#0000ff" is_bold="True" name="Kubernetes" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293713.65" ts_lastsave="1616067020.74" unique_id="132">
 				<rich_text>$ kubectl apply -f app.yml
 $ kubectl get deployment</rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="app.yaml" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293759.3" ts_lastsave="1593077388.2" unique_id="133">
@@ -3029,12 +3029,15 @@ $ kubectl rollout history deployment nginx
 $ kubectl rollout undo deployment nginx [--to-revision=1]
 </rich_text>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="auto-scale" prog_lang="sh" readonly="False" tags="" ts_creation="1616066509.88" ts_lastsave="1616066512.97" unique_id="246">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="auto-scale" prog_lang="sh" readonly="False" tags="" ts_creation="1616066509.88" ts_lastsave="1616066520.33" unique_id="246">
 						<rich_text>$ kubectl autoscale rs kuard --min=2 --max=5 --cpu-percent=80
+
 This command creates an autoscaler that scales between two and five replicas with a
 CPU threshold of 80%. To view, modify, or delete this resource you can use the stan‐
 dard kubectl commands and the horizontalpodautoscalers resource. horizontal
 podautoscalers is quite a bit to type, but it can be shortened to hpa :
+
+
 $ kubectl get hpa</rich_text>
 					</node>
 				</node>
@@ -3109,6 +3112,13 @@ $ sudo torify /bin/bash ./k3s-install.sh
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="node-selector" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615613638.72" ts_lastsave="1615613640.72" unique_id="238">
 					<rich_text>یا یک نود خاص مشخص بشه جهت میزبانی پاد خاص و یا affinity مانند اینکه نودهایی که ssd دارد و یا مقدار رم مشخصی دارد</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="api" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1616067020.74" ts_lastsave="1616067023.16" unique_id="247">
+					<rich_text>$ kubectl proxy --port=8080 
+
+$ curl -X DELETE  'localhost:8080/apis/apps/v1/namespaces/default/replicasets/nginx-5b78f8bffb' -d '{&quot;kind&quot;:&quot;DeleteOptions&quot;,&quot;apiVersion&quot;:&quot;v1&quot;,&quot;propagationPolicy&quot;:&quot;Orphan&quot;}'  -H &quot;C
+ontent-Type: application/json&quot;
+</rich_text>
 				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="CI/CD" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1593581674.07" ts_lastsave="1600670293.07" unique_id="144">

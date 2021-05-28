@@ -3029,6 +3029,17 @@ $ kubectl rollout history deployment nginx
 $ kubectl rollout undo deployment nginx [--to-revision=1]
 </rich_text>
 					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="auto-scale" prog_lang="sh" readonly="False" tags="" ts_creation="1616066509.88" ts_lastsave="1616066520.33" unique_id="246">
+						<rich_text>$ kubectl autoscale rs kuard --min=2 --max=5 --cpu-percent=80
+
+This command creates an autoscaler that scales between two and five replicas with a
+CPU threshold of 80%. To view, modify, or delete this resource you can use the stan‐
+dard kubectl commands and the horizontalpodautoscalers resource. horizontal
+podautoscalers is quite a bit to type, but it can be shortened to hpa :
+
+
+$ kubectl get hpa</rich_text>
+					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="plugin" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600933945.48" ts_lastsave="1600936761.53" unique_id="140">
 					<rich_text>
