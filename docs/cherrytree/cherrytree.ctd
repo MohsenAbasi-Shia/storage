@@ -390,24 +390,30 @@ Trin leading and trailing specfic character (e.g. &quot; and \t and whitespace )
 </rich_text>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="dpkg" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600065290.03" ts_lastsave="1600065345.31" unique_id="25">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="dpkg" prog_lang="sh" readonly="False" tags="" ts_creation="1600065290.03" ts_lastsave="1622293798.61" unique_id="25">
 			<rich_text>
 [error]
 dpkg frontend is locked
 
 [solution]
-</rich_text>
-			<rich_text family="monospace">sudo rm /var/cache/apt/archives/lock
-sudo rm /var/lib/dpkg/lock</rich_text>
-			<rich_text>
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock
 
+A package reconfiguration may also be needed after this, as well as fixing any potentially broken packages:
+
+sudo dpkg --configure -a
+sudo apt install -f
+
+
+..........................................
+
+[correct problems]
+# sudo rm /var/lib/apt/lists/lock
+# sudo rm /var/cache/apt/archives/lock
+# cd /var/lib/dpkg/updates
+# sudo rm *
+# sudo apt-get update
 </rich_text>
-			<rich_text foreground="#e6e6e6e6fafa">A package reconfiguration may also be needed after this, as well as fixing any potentially broken packages:
-</rich_text>
-			<rich_text>
-</rich_text>
-			<rich_text family="monospace">sudo dpkg --configure -a
-sudo apt install -f</rich_text>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="apt" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600166083.73" ts_lastsave="1620300224.63" unique_id="26">
 			<rich_text>
@@ -799,12 +805,12 @@ $ systemctl restart polipo.service    </rich_text>
 				<rich_text>$ </rich_text>
 				<rich_text weight="heavy">find /path/to/remove -maxdepth 1 -mtime +14 -exec rm {} +;</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="remove_exclude" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611048434.66" ts_lastsave="1620454835.49" unique_id="198">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="remove_exclude" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611048434.66" ts_lastsave="1622166663.96" unique_id="198">
 				<rich_text weight="heavy">$ rm -- !(file.exclude)</rich_text>
 				<rich_text>
 
 example:
-$ rm -- !(astan_db_2021-05-0[5-7].sql)
+$ rm -- !(db_2021-05-0[5-7].sql)
 
 $ rm -v file[!2].txt
 
@@ -1257,7 +1263,7 @@ to upgrade Gitlab.
 Just it. an easy way!!!</rich_text>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="commands-tricks" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601362856.7" ts_lastsave="1609907884.78" unique_id="54">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="commands-tricks" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601362856.7" ts_lastsave="1622609889.44" unique_id="54">
 			<rich_text>
 </rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="reset" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497072.44" ts_lastsave="1601362869.58" unique_id="55">
@@ -1301,6 +1307,9 @@ git config --global https.proxy </rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="config" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1609907884.78" ts_lastsave="1609907886.35" unique_id="59">
 				<rich_text>$ git config --global --unset
 $ git config --global --edit</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="change_origin" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1622609889.44" ts_lastsave="1622610337.59" unique_id="282">
+				<rich_text>$ git remote set-url origin &lt;new-url&gt;</rich_text>
 			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="rename-branch" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1599461518.34" ts_lastsave="1601362888.01" unique_id="60">
@@ -2695,8 +2704,12 @@ Valid placeholders for the Go template are listed below:
 						</row>
 					</table>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="change_pass-Login" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1605780851.35" ts_lastsave="1605780852.58" unique_id="127">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="change_pass-Login" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1605780851.35" ts_lastsave="1622430995.58" unique_id="127">
 					<rich_text>$ sudo docker login  -u user -p 'pass' https://docker.itc.aqr.ir/v2/
+
+
+[Error]
+Error response from daemon: Head https://&lt;registry-host&gt;/v2/&lt;docker-image&gt;: unauthorized: BAD_CREDENTIAL
 </rich_text>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="process" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606743707.17" ts_lastsave="1606743709.55" unique_id="128">
