@@ -298,7 +298,7 @@ SELECT table_name || '_' || column_name || '_seq',
     reset_sequence(table_name, column_name, table_name || '_' || column_name || '_seq') 
 FROM information_schema.columns where column_default like 'nextval%';</rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="grant" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611732682.88" ts_lastsave="1611732732.31" unique_id="204">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="grant" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611732682.88" ts_lastsave="1623228376.86" unique_id="204">
 				<rich_text>\c &lt;db&gt;
 GRANT </rich_text>
 				<rich_text weight="heavy">SELECT</rich_text>
@@ -309,6 +309,15 @@ GRANT </rich_text>
 </rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="show_grants" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611732662.73" ts_lastsave="1622095915.12" unique_id="203">
 					<rich_text>SELECT table_catalog, table_schema, table_name, privilege_type FROM   information_schema.table_privileges  WHERE  grantee = '&lt;user&gt;'; </rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="revoke_grants" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623228376.87" ts_lastsave="1623229581.42" unique_id="286">
+					<rich_text>REVOKE ALL PRIVILEGES ON ALL TABLES IN SCHEMA public FROM &quot;haram-dev&quot;;
+
+REVOKE ALL PRIVILEGES ON ALL sequences IN SCHEMA public FROM &quot;haram-dev&quot;; 
+
+drop owned by &quot;haram-dev&quot;;
+ 
+</rich_text>
 				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="vacuum" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614406365.8" ts_lastsave="1614406367.72" unique_id="227">
@@ -329,7 +338,7 @@ FROM pg_stat_user_tables;</rich_text>
 # netsh winhttp reset proxy</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1622018126.42" unique_id="21">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1623057344.57" unique_id="21">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="sed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890088.34" ts_lastsave="1601275230.32" unique_id="22">
 			<rich_text>Add character at the beginning of each line using sed command. For example to add # in front of each line we can use sed command with following syntax:
@@ -1217,6 +1226,18 @@ echo $password
  
 </rich_text>
 		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="special-characters" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1622693217.27" ts_lastsave="1622693278.79" unique_id="284">
+			<rich_text>!            #             $                &amp;              '               (               )               *               +               ,               /               :               ;               =               ?               @               [               ]
+%21          %23     %24         %26        %27          %28            %29          %2A         %2B         %2C         %2F         %3A         %3B             %3D         %3F         %40            %5B          %5D</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="unrar" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623057344.57" ts_lastsave="1623057347.13" unique_id="285">
+			<rich_text family="monospace">sudo apt-get install unace unrar zip unzip p7zip-full p7zip-rar sharutils rar uudeview mpack arj cabextract file-roller</rich_text>
+			<rich_text>
+
+OR
+
+sudo apt-get install p7zip-rar</rich_text>
+		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="git" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497057.54" ts_lastsave="1621486321.63" unique_id="50">
 		<rich_text>
@@ -2015,7 +2036,7 @@ spec:
 		<node custom_icon_id="0" foreground="" is_bold="False" name="tools" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600670157.94" ts_lastsave="1619344471.62" unique_id="100">
 			<rich_text>
 </rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331030.5" ts_lastsave="1621416630.96" unique_id="101">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331030.5" ts_lastsave="1622692691.22" unique_id="101">
 				<rich_text></rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="docker-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595336682.55" ts_lastsave="1619954962.39" unique_id="104">
 					<rich_text>1. Run this command to download the current stable release of Docker Compose:
@@ -3125,6 +3146,67 @@ Usage:
 docker exec -it &lt;your_registry_container_id&gt; ls -a /var/lib/registry/docker/registry/v2/repositories/postgresql/_manifests/tags</rich_text>
 						</node>
 					</node>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="permission_user" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1622692691.22" ts_lastsave="1622693097.81" unique_id="283">
+					<rich_text link="webs https://vsupalov.com/docker-shared-permissions/">https://vsupalov.com/docker-shared-permissions/</rich_text>
+					<rich_text>
+
+[issue]
+</rich_text>
+					<rich_text scale="h1">Avoiding Permission Issues With Docker-Created Files</rich_text>
+					<rich_text>
+
+
+[solution]
+</rich_text>
+					<rich_text scale="h2">Set the Docker user when running your container</rich_text>
+					<rich_text>
+
+</rich_text>
+					<rich_text family="monospace">$ docker run -it --rm \
+  --mount &quot;type=bind,src=$(pwd)/shared,dst=/opt/shared&quot; \
+  --workdir /opt/shared \
+  --user &quot;$(id -u):$(id -g)&quot; \
+  ubuntu bash</rich_text>
+					<rich_text>
+  
+  
+
+</rich_text>
+					<rich_text scale="h2">Build the right image</rich_text>
+					<rich_text>
+Now it gets more interesting. Here is how you can build, configure and run your Docker containers correctly, so you don’t have to fight permission errors and access your files easily.
+As you should create a non-root user in your Dockerfile in any case, this is a nice thing to do. While we’re at it, we might as well set the user id and group id explicitly.
+Here is a minimal Dockerfile which expects to receive build-time arguments, and creates a new user called “user”:
+
+
+</rich_text>
+					<rich_text family="monospace">FROM ubuntu
+
+ARG USER_ID
+ARG GROUP_ID
+
+RUN addgroup --gid $GROUP_ID user
+RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
+USER user</rich_text>
+					<rich_text>
+
+check out </rich_text>
+					<rich_text link="webs https://stackoverflow.com/questions/27701930/add-user-to-docker-container">https://stackoverflow.com/questions/27701930/add-user-to-docker-container</rich_text>
+					<rich_text> for more info on adduser
+
+</rich_text>
+					<rich_text family="monospace">$ docker build -t myimage \
+  --build-arg USER_ID=$(id -u) \
+  --build-arg GROUP_ID=$(id -g) .
+$ docker run -it --rm \
+  --mount &quot;type=bind,src=$(pwd)/shared,dst=/opt/shared&quot; \
+  --workdir /opt/shared \
+  myimage bash</rich_text>
+					<rich_text>
+
+  
+No need to use “chown”, and no annoying permission errors anymore!</rich_text>
 				</node>
 			</node>
 			<node custom_icon_id="0" foreground="#0000ff" is_bold="True" name="Kubernetes" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293713.65" ts_lastsave="1618320733.86" unique_id="132">
