@@ -577,7 +577,7 @@ $ </rich_text>
 			<rich_text>gnome → uses GTK+ toolkit
 KDE → uses Qt toolkit</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="scp" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602759233.58" ts_lastsave="1613795449.1" unique_id="37">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="scp" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602759233.58" ts_lastsave="1623294002.91" unique_id="37">
 			<rich_text>
 </rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="exclude" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602759240.11" ts_lastsave="1602759261.39" unique_id="38">
@@ -586,6 +586,15 @@ KDE → uses Qt toolkit</rich_text>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="argument-list-too-long" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613795449.1" ts_lastsave="1613795462.59" unique_id="220">
 				<rich_text weight="heavy">$ rsync -av --include='*.*' saheb@remote-ip:~/shares/mount/ ./
+</rich_text>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="between_2_remote_servers" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623294002.91" ts_lastsave="1623294064.41" unique_id="287">
+				<rich_text>
+-3 means a third server other than the source and dest.
+
+# scp -v -o StrictHostKeyChecking=no </rich_text>
+				<rich_text weight="heavy">-3 </rich_text>
+				<rich_text>
 </rich_text>
 			</node>
 		</node>
@@ -2036,7 +2045,7 @@ spec:
 		<node custom_icon_id="0" foreground="" is_bold="False" name="tools" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600670157.94" ts_lastsave="1619344471.62" unique_id="100">
 			<rich_text>
 </rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331030.5" ts_lastsave="1622692691.22" unique_id="101">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331030.5" ts_lastsave="1623299422.4" unique_id="101">
 				<rich_text></rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="docker-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595336682.55" ts_lastsave="1619954962.39" unique_id="104">
 					<rich_text>1. Run this command to download the current stable release of Docker Compose:
@@ -2733,7 +2742,7 @@ Valid placeholders for the Go template are listed below:
 Error response from daemon: Head https://&lt;registry-host&gt;/v2/&lt;docker-image&gt;: unauthorized: BAD_CREDENTIAL
 </rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="process" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606743707.17" ts_lastsave="1606743709.55" unique_id="128">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="process" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606743707.17" ts_lastsave="1623316767.24" unique_id="128">
 					<rich_text>get an overview of the resource usage of Docker Containers, similar to </rich_text>
 					<rich_text family="monospace">top</rich_text>
 					<rich_text>.
@@ -2743,6 +2752,24 @@ $ systemd-cgtop
 
 </rich_text>
 					<rich_text link="webs https://stackoverflow.com/a/48922355/659077">https://stackoverflow.com/a/48922355/659077</rich_text>
+					<rich_text>
+
+
+$ systemd-cgls
+..................................
+
+
+[issue]
+</rich_text>
+					<rich_text link="webs https://stackoverflow.com/questions/34878808/finding-docker-container-processes-from-host-point-of-view" scale="h1">Finding Docker container processes? (from host point of view)</rich_text>
+					<rich_text>
+
+[answer]
+</rich_text>
+					<rich_text family="monospace">for i in $(docker container ls --format &quot;{{.ID}}&quot;); do docker inspect -f '{{.State.Pid}} {{.Name}}' $i; done</rich_text>
+					<rich_text>
+
+</rich_text>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="issues" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606816249.77" ts_lastsave="1621052959.69" unique_id="129">
 					<rich_text>
