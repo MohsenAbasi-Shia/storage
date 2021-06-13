@@ -4035,7 +4035,7 @@ spec:
     - name: mysql
       image: mysql:5.7  </rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="MinIO" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600933574.18" ts_lastsave="1601806066.45" unique_id="148">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="MinIO" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600933574.18" ts_lastsave="1623553331.38" unique_id="148">
 				<rich_text>
 </rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="MinIO_Operator" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600933599.46" ts_lastsave="1600933607.8" unique_id="149">
@@ -4098,6 +4098,12 @@ $ docker run -it minio-server minio -version
     
 $ docker pull minio/mc:</rich_text>
 					<rich_text weight="heavy">&lt;minio-server-version&gt;</rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="list-users" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623553331.38" ts_lastsave="1623553425.4" unique_id="288">
+					<rich_text># mc config host add file https://file.razavi.ir minio-file &lt;token&gt;
+
+# mc admin user list file
+</rich_text>
 				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="security" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601016162.72" ts_lastsave="1601016167.42" unique_id="151">
