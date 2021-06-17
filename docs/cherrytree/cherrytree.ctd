@@ -2190,7 +2190,7 @@ Network ‘89678bjsd87786ashvhvasd’ Not found
 sudo docker-compose up --force-recreate -d</rich_text>
 						</node>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="install-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601378827.65" ts_lastsave="1623910561.51" unique_id="122">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="install-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601378827.65" ts_lastsave="1623920445.48" unique_id="122">
 						<rich_text>
 
 # export latest=$(curl -Ls -o /dev/null -w %{url_effective}  https://github.com/docker/compose/releases/latest  | grep -o '[^/]*$')
@@ -2488,7 +2488,7 @@ Note that </rich_text>
 						<rich_text background="#000000000000" foreground="#00000000ffff">
 </rich_text>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="maven_proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615274498.94" ts_lastsave="1623914096.25" unique_id="230">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="maven_proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615274498.94" ts_lastsave="1623920223.45" unique_id="230">
 						<rich_text>FROM oraclejava:8
 
 #RUN echo '' &gt; /etc/apt/apt.conf.d/01proxy
@@ -2520,7 +2520,7 @@ RUN echo $'</rich_text>
               &lt;port&gt;8080&lt;/port&gt; \n\
               &lt;nonProxyHosts&gt;</rich_text>
 						<rich_text link="webs http://www.google.com|*.aqr.ir|*.razavi.ir&lt;/nonProxyHosts&gt;" weight="heavy">www.google.com|*.example.ir&lt;/nonProxyHosts&gt;</rich_text>
-						<rich_text weight="heavy"> \n\
+						<rich_text weight="heavy"> \n
             &lt;/proxy&gt; \n\
   		&lt;/proxies&gt; \n\
   &lt;/settings&gt;</rich_text>
