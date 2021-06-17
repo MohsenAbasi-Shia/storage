@@ -338,7 +338,7 @@ FROM pg_stat_user_tables;</rich_text>
 # netsh winhttp reset proxy</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1623057344.57" unique_id="21">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1623903971.21" unique_id="21">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="sed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890088.34" ts_lastsave="1601275230.32" unique_id="22">
 			<rich_text>Add character at the beginning of each line using sed command. For example to add # in front of each line we can use sed command with following syntax:
@@ -588,13 +588,14 @@ KDE → uses Qt toolkit</rich_text>
 				<rich_text weight="heavy">$ rsync -av --include='*.*' saheb@remote-ip:~/shares/mount/ ./
 </rich_text>
 			</node>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="between_2_remote_servers" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623294002.91" ts_lastsave="1623294064.41" unique_id="287">
+			<node custom_icon_id="0" foreground="" is_bold="False" name="between_2_remote_servers" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623294002.91" ts_lastsave="1623664498.66" unique_id="287">
 				<rich_text>
 -3 means a third server other than the source and dest.
 
 # scp -v -o StrictHostKeyChecking=no </rich_text>
 				<rich_text weight="heavy">-3 </rich_text>
 				<rich_text>
+
 </rich_text>
 			</node>
 		</node>
@@ -1246,6 +1247,16 @@ echo $password
 OR
 
 sudo apt-get install p7zip-rar</rich_text>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="openssl" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623903971.22" ts_lastsave="1623909653.05" unique_id="295">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="ca" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623909649.87" ts_lastsave="1623909655.29" unique_id="296">
+				<rich_text>
+میتونی سرتیفیکیت رو هم نگاه کرد که توسط چه کسی امضا شده
+#cat ~/.kube/config | grep client-certificate | awk -F &quot;: &quot; '{print $2}' | base64 -d  &gt; /tmp/1
+#openssl x509 -in /tmp/1 -noout -text | grep Issuer
+#rm -fv /tmp/1</rich_text>
+			</node>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="git" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597497057.54" ts_lastsave="1621486321.63" unique_id="50">
@@ -2047,7 +2058,7 @@ spec:
 </rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595331030.5" ts_lastsave="1623299422.4" unique_id="101">
 				<rich_text></rich_text>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="docker-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595336682.55" ts_lastsave="1619954962.39" unique_id="104">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="docker-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1595336682.55" ts_lastsave="1623656027.56" unique_id="104">
 					<rich_text>1. Run this command to download the current stable release of Docker Compose:
 </rich_text>
 					<rich_text family="monospace" foreground="#658b00">sudo </rich_text>
@@ -2179,13 +2190,50 @@ Network ‘89678bjsd87786ashvhvasd’ Not found
 sudo docker-compose up --force-recreate -d</rich_text>
 						</node>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="install-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601378827.65" ts_lastsave="1613467754.8" unique_id="122">
-						<rich_text family="monospace" foreground="#e6e6e6e6fafa">curl -L &quot;https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="install-compose" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601378827.65" ts_lastsave="1623910561.51" unique_id="122">
 						<rich_text>
 
-</rich_text>
+# export latest=$(curl -Ls -o /dev/null -w %{url_effective}  https://github.com/docker/compose/releases/latest  | grep -o '[^/]*$')
+
+# </rich_text>
+						<rich_text family="monospace" foreground="#e6e6e6e6fafa">curl -L &quot;https://github.com/docker/compose/releases/download/${latest}/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</rich_text>
+						<rich_text>
+
+# </rich_text>
 						<rich_text family="monospace">chmod +x /usr/local/bin/docker-compose</rich_text>
 						<rich_text>
+</rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="network-has-active-endpoints" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623656027.56" ts_lastsave="1623656144.55" unique_id="289">
+						<rich_text>[ISSUE]
+# docker-compose down
+    docker network &lt;net&gt; has active endpoints
+    
+[ANSWER]
+
+# docker network inspect </rich_text>
+						<rich_text weight="heavy">sentry-20_default</rich_text>
+						<rich_text>
+
+        &quot;Containers&quot;: { 
+            &quot;ep-a011fac9dbe28f74836760fd51a58470d9d4dcb3c8a78f956576c3b8498f7205&quot;: { 
+                &quot;Name&quot;: &quot;sentry-20_post-process-forwarder_1&quot;, 
+                &quot;EndpointID&quot;: &quot;a011fac9dbe28f74836760fd51a58470d9d4dcb3c8a78f956576c3b8498f7205&quot;, 
+                &quot;MacAddress&quot;: &quot;02:42:c0:a8:f0:18&quot;, 
+                &quot;IPv4Address&quot;: &quot;192.168.240.24/20&quot;, 
+                &quot;IPv6Address&quot;: &quot;&quot; 
+            } 
+        },
+
+    
+# docker network disconnect -f </rich_text>
+						<rich_text weight="heavy">sentry-20_default</rich_text>
+						<rich_text> sentry-20_post-process-forwarder_1
+
+# docker network remove </rich_text>
+						<rich_text weight="heavy">sentry-20_default</rich_text>
+						<rich_text>
+
 </rich_text>
 					</node>
 				</node>
@@ -2440,7 +2488,7 @@ Note that </rich_text>
 						<rich_text background="#000000000000" foreground="#00000000ffff">
 </rich_text>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="maven_proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615274498.94" ts_lastsave="1615276071.65" unique_id="230">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="maven_proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615274498.94" ts_lastsave="1623914096.25" unique_id="230">
 						<rich_text>FROM oraclejava:8
 
 #RUN echo '' &gt; /etc/apt/apt.conf.d/01proxy
@@ -2456,7 +2504,9 @@ RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /etc/apt/sources.list.d/*
 RUN apt-get update
 RUN apt-get install -y maven
-SHELL [&quot;/bin/bash&quot;,&quot;-c&quot;]
+</rich_text>
+						<rich_text weight="heavy">SHELL [&quot;/bin/bash&quot;,&quot;-c&quot;]</rich_text>
+						<rich_text>
 RUN mkdir ~/.m2
 RUN touch ~/.m2/settings.xml
 RUN echo $'</rich_text>
@@ -2475,7 +2525,9 @@ RUN echo $'</rich_text>
   		&lt;/proxies&gt; \n\
   &lt;/settings&gt;</rich_text>
 						<rich_text>' &gt; ~/.m2/settings.xml
-SHELL [&quot;/bin/sh&quot;,&quot;-c&quot;]
+</rich_text>
+						<rich_text weight="heavy">SHELL [&quot;/bin/sh&quot;,&quot;-c&quot;]</rich_text>
+						<rich_text>
 RUN rm -rf /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/*
 
 ARG BRANCH
@@ -2742,8 +2794,60 @@ Valid placeholders for the Go template are listed below:
 Error response from daemon: Head https://&lt;registry-host&gt;/v2/&lt;docker-image&gt;: unauthorized: BAD_CREDENTIAL
 </rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="process" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606743707.17" ts_lastsave="1623316767.24" unique_id="128">
-					<rich_text>get an overview of the resource usage of Docker Containers, similar to </rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="process" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606743707.17" ts_lastsave="1623655124.39" unique_id="128">
+					<rich_text>[ISSUE]
+Which docker container a process belong to:
+
+
+
+[ANSWER]
+A process with PID: </rich_text>
+					<rich_text weight="heavy">65340</rich_text>
+					<rich_text> belongs to docker container: </rich_text>
+					<rich_text weight="heavy">sentry-20_redis_1</rich_text>
+					<rich_text>
+
+# find /proc -name  &lt;pid&gt;
+    # find /proc -name  </rich_text>
+					<rich_text weight="heavy">65340</rich_text>
+					<rich_text>
+    /proc/64180/task/</rich_text>
+					<rich_text weight="heavy">65340</rich_text>
+					<rich_text>
+
+# cat /proc/64180/task/</rich_text>
+					<rich_text weight="heavy">65340</rich_text>
+					<rich_text>/cgroup  
+
+12:cpuset:</rich_text>
+					<rich_text weight="heavy">/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f</rich_text>
+					<rich_text> 
+11:pids:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+10:memory:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+9:blkio:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+8:cpu,cpuacct:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+7:devices:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+6:hugetlb:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+5:net_cls,net_prio:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+4:freezer:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+3:rdma:/ 
+2:perf_event:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+1:name=systemd:/docker/dc4825f1d4cd0b96e87dfb2cdcb74cfb4505c03773d7d4dafd608e8e9886d80f 
+0::/system.slice/containerd.service
+ 
+# docker ps  | fgrep </rich_text>
+					<rich_text weight="heavy">dc4825f</rich_text>
+					<rich_text> 
+    # docker ps  | fgrep dc4825f  
+</rich_text>
+					<rich_text foreground="#ff5454" weight="heavy">dc4825f</rich_text>
+					<rich_text weight="heavy">1d4cd        redis:5.0-alpine                                           &quot;docker-entrypoint.s…&quot;   3 weeks ago         Up 3 weeks              6379/tcp                                 
+        sentry-20_redis_1
+        
+</rich_text>
+					<rich_text>
+.........................................
+get an overview of the resource usage of Docker Containers, similar to </rich_text>
 					<rich_text family="monospace">top</rich_text>
 					<rich_text>.
 
@@ -3236,7 +3340,7 @@ $ docker run -it --rm \
 No need to use “chown”, and no annoying permission errors anymore!</rich_text>
 				</node>
 			</node>
-			<node custom_icon_id="0" foreground="#0000ff" is_bold="True" name="Kubernetes" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293713.65" ts_lastsave="1618320733.86" unique_id="132">
+			<node custom_icon_id="0" foreground="#0000ff" is_bold="True" name="Kubernetes" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293713.65" ts_lastsave="1623664750.11" unique_id="132">
 				<rich_text>$ kubectl apply -f app.yml
 $ kubectl get deployment</rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="app.yaml" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1592293759.3" ts_lastsave="1593077388.2" unique_id="133">
@@ -3570,12 +3674,18 @@ To use the above plugin, simply make it executable:
 						<rich_text>ابزار k3s یک توزیع کوچک از کوبرنتیز هست برای سیستم های با منابع کم مانند IOT و Age و ...
 </rich_text>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612694307.3" ts_lastsave="1612694366.71" unique_id="210">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612694307.3" ts_lastsave="1623835083.69" unique_id="210">
 						<rich_text>$ sudo curl -x http://proxy.aqr.ir:8080 -sfL </rich_text>
 						<rich_text link="webs https://get.k3s.io">https://get.k3s.io</rich_text>
 						<rich_text> &gt; k3s-install.sh
+
+Install k3s via proxy:
+
 $ sudo torify /bin/bash ./k3s-install.sh
-</rich_text>
+
+OR
+export HTTP_PROXY=&quot;http://&lt;ip&gt;:&lt;port&gt;&quot;
+$ sudo /bin/bash ./k3s-install.sh</rich_text>
 					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="مدیریت-ترافیک-شبکه" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615613394.08" ts_lastsave="1615613488.15" unique_id="237">
@@ -3852,6 +3962,36 @@ KUBE-SVC-X3WUOHPTYIG7AA3Q  tcp  --  0.0.0.0/0            0.0.0.0/0            tc
 root@vm1:~/tools/k3s/sample/ingress# 
  
 </rich_text>
+				</node>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="helm" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623664750.11" ts_lastsave="1623835696.22" unique_id="290">
+					<rich_text></rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="add" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623664757.58" ts_lastsave="1623664758.76" unique_id="291">
+						<rich_text># helm repo add .....
+
+</rich_text>
+						<rich_text link="webs https://artifacthub.io/packages/search">https://artifacthub.io/packages/search</rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623835059.12" ts_lastsave="1623835060.17" unique_id="292">
+						<rich_text># export HTTPS_PROXY=&quot;http://&lt;ip&gt;:&lt;port&gt;&quot;
+</rich_text>
+					</node>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="issues" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623835696.22" ts_lastsave="1623835705.05" unique_id="293">
+						<rich_text></rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="cluster-unavailable" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1623835705.05" ts_lastsave="1623835759.98" unique_id="294">
+							<rich_text>[ISSUE]
+Error: Kubernetes cluster unreachable: Get &quot;http://localhost:8080/version?timeout=32s&quot;: dial tcp 127.0.0.1:8080: connect: connection refused
+
+[SOLUTION]
+
+# </rich_text>
+							<rich_text weight="heavy">kubectl config view --raw &gt; ~/.kube/config</rich_text>
+							<rich_text>
+
+ # helm install ....
+ 
+</rich_text>
+						</node>
+					</node>
 				</node>
 			</node>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="CI/CD" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1593581674.07" ts_lastsave="1600670293.07" unique_id="144">
@@ -4908,8 +5048,10 @@ mysql&gt; 1. UPDATE `matomo_user` SET `password` = &quot;$2y$10$FiknavjTDvUUTSMX
 		<node custom_icon_id="0" foreground="" is_bold="False" name="pip" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615720632.82" ts_lastsave="1615720646.06" unique_id="239">
 			<rich_text>
 </rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="pip-install-proxy" prog_lang="sh" readonly="False" tags="" ts_creation="1609574707.76" ts_lastsave="1609574709.84" unique_id="180">
-				<rich_text>$ pip3 install  --proxy=https://[username:password@]proxyserver:port   &lt;package&gt;</rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="pip-install-proxy" prog_lang="sh" readonly="False" tags="" ts_creation="1609574707.76" ts_lastsave="1623730331.04" unique_id="180">
+				<rich_text>$ pip3 install  --proxy=https://[username:password@]proxyserver:port   &lt;package&gt;==&lt;version&gt;
+
+$ pip3 install  --proxy=https://[username:password@]proxyserver:port   ansible==2.9</rich_text>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="nginx" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1607492018.64" ts_lastsave="1615290724.17" unique_id="181">
 					<rich_text>
 </rich_text>
