@@ -2633,7 +2633,7 @@ f48b3893fe9d islam bridge
 </rich_text>
 					</node>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="log" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600847389.67" ts_lastsave="1600847473.36" unique_id="120">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="log" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1600847389.67" ts_lastsave="1624178847.17" unique_id="120">
 					<rich_text>$ docker run -d --name redis-server --log-driver=[syslog|none] redis
 
 $ </rich_text>
@@ -2641,6 +2641,31 @@ $ </rich_text>
 					<rich_text>
 
 </rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="empty" prog_lang="sh" readonly="False" tags="" ts_creation="1624178847.17" ts_lastsave="1624179272.2" unique_id="298">
+						<rich_text>1. Copy log
+    $ cp $(docker inspect --format '{{ .LogPath }}' &lt;container_name_or_id&gt;) ./&lt;container_name_or_id&gt;-$(date -I).log
+2. Clear log
+    
+    $ echo &quot;&quot; &gt; $(docker inspect --format='{{.LogPath}}' &lt;container_name_or_id&gt;)
+instead of echo, there's the simpler:
+    $ : &gt; $(docker inspect --format='{{.LogPath}}' &lt;container_name_or_id&gt;)
+or there's the truncate command:
+    $ truncate -s 0 $(docker inspect --format='{{.LogPath}}' &lt;container_name_or_id&gt;)
+    
+    
+
+---------------------------------------------------------------
+Clear logs of all the containers:
+
+#!/bin/bash
+ids=$(docker ps -a --format='{{.ID}}')
+for id in $ids
+do
+        echo $(docker ps -a --format='{{.ID}} ### {{.Names}} ### {{.Image}}' | fgrep $id)
+        truncate -s 0 $(docker inspect --format='{{.LogPath}}' $id)
+        ls -llh $(docker inspect --format='{{.LogPath}}' $id)
+done</rich_text>
+					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1601376793.0" ts_lastsave="1620809351.22" unique_id="121">
 					<rich_text>If you need a proxy to install docker:
@@ -2794,7 +2819,7 @@ Valid placeholders for the Go template are listed below:
 Error response from daemon: Head https://&lt;registry-host&gt;/v2/&lt;docker-image&gt;: unauthorized: BAD_CREDENTIAL
 </rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="process" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606743707.17" ts_lastsave="1623655124.39" unique_id="128">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="process" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606743707.17" ts_lastsave="1624254507.41" unique_id="128">
 					<rich_text>[ISSUE]
 Which docker container a process belong to:
 
@@ -2874,6 +2899,21 @@ $ systemd-cgls
 					<rich_text>
 
 </rich_text>
+					<node custom_icon_id="0" foreground="" is_bold="False" name="process-to-container.sh" prog_lang="sh" readonly="False" tags="" ts_creation="1624254507.41" ts_lastsave="1624254770.37" unique_id="299">
+						<rich_text>How to map a process with pid into container:
+
+1. nano p2c
+
+
+#!/bin/bash 
+processPath=$(find /proc/ -name $1 2&gt;/dev/null) 
+containerID=$(cat ${processPath}/cgroup | fgrep 'pids:/docker/' | sed -e 's#.*/docker/##g' | cut -c 1-12) 
+docker ps | fgrep $containerID
+ 
+....................................................................
+2. mv ./p2c /usr/local/bin &amp;&amp; chmod u+x ./p2c 
+2. p2c &lt;pid&gt;</rich_text>
+					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="issues" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1606816249.77" ts_lastsave="1621052959.69" unique_id="129">
 					<rich_text>
@@ -3667,14 +3707,14 @@ To use the above plugin, simply make it executable:
 #max containers: 300000 سیصد هزار
  </rich_text>
 				</node>
-				<node custom_icon_id="0" foreground="" is_bold="False" name="k3s" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612694285.55" ts_lastsave="1612694307.3" unique_id="209">
+				<node custom_icon_id="0" foreground="" is_bold="False" name="k3s" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612694285.55" ts_lastsave="1624095477.45" unique_id="209">
 					<rich_text>
 </rich_text>
 					<node custom_icon_id="0" foreground="" is_bold="False" name="k3s_vs_k8s" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603863573.38" ts_lastsave="1612694289.42" unique_id="142">
 						<rich_text>ابزار k3s یک توزیع کوچک از کوبرنتیز هست برای سیستم های با منابع کم مانند IOT و Age و ...
 </rich_text>
 					</node>
-					<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612694307.3" ts_lastsave="1623835083.69" unique_id="210">
+					<node custom_icon_id="0" foreground="" is_bold="False" name="install" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1612694307.3" ts_lastsave="1624095508.74" unique_id="210">
 						<rich_text>$ sudo curl -x http://proxy.aqr.ir:8080 -sfL </rich_text>
 						<rich_text link="webs https://get.k3s.io">https://get.k3s.io</rich_text>
 						<rich_text> &gt; k3s-install.sh
@@ -3686,6 +3726,24 @@ $ sudo torify /bin/bash ./k3s-install.sh
 OR
 export HTTP_PROXY=&quot;http://&lt;ip&gt;:&lt;port&gt;&quot;
 $ sudo /bin/bash ./k3s-install.sh</rich_text>
+						<node custom_icon_id="0" foreground="" is_bold="False" name="agent" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1624095508.74" ts_lastsave="1624095582.47" unique_id="297">
+							<rich_text>cat k3s-install.sh | K3S_URL=https://&lt;</rich_text>
+							<rich_text weight="heavy">server</rich_text>
+							<rich_text>&gt;:6443 K3S_TOKEN=&lt;</rich_text>
+							<rich_text weight="heavy">server-token</rich_text>
+							<rich_text>&gt; sh -
+
+</rich_text>
+							<rich_text weight="heavy">server-token</rich_text>
+							<rich_text>:
+On the </rich_text>
+							<rich_text weight="heavy">server</rich_text>
+							<rich_text>, run:
+    #cat /var/lib/rancher/k3s/server/node-token
+
+ 
+</rich_text>
+						</node>
 					</node>
 				</node>
 				<node custom_icon_id="0" foreground="" is_bold="False" name="مدیریت-ترافیک-شبکه" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615613394.08" ts_lastsave="1615613488.15" unique_id="237">
