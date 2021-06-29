@@ -140,7 +140,7 @@ TRUNCATE table1;</rich_text>
 				</node>
 			</node>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="postgres" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602735638.04" ts_lastsave="1621322285.8" unique_id="11">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="postgres" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1602735638.04" ts_lastsave="1624858981.11" unique_id="11">
 			<rich_text></rich_text>
 			<node custom_icon_id="0" foreground="" is_bold="False" name="exec_command_on_docker" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1603876246.12" ts_lastsave="1603885718.57" unique_id="12">
 				<rich_text>#/bin/bash
@@ -327,6 +327,16 @@ drop owned by &quot;haram-dev&quot;;
     vacuum_count, autovacuum_count  -- not available on 9.0 and earlier
 FROM pg_stat_user_tables;</rich_text>
 			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="user" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1624858981.11" ts_lastsave="1624858986.62" unique_id="300">
+				<rich_text></rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="drop" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1624858986.62" ts_lastsave="1624859021.25" unique_id="301">
+					<rich_text>psql# </rich_text>
+					<rich_text weight="heavy">drop owned by &lt;user&gt;;</rich_text>
+					<rich_text>
+psql# </rich_text>
+					<rich_text weight="heavy">drop user &lt;user&gt;;</rich_text>
+				</node>
+			</node>
 		</node>
 	</node>
 	<node custom_icon_id="0" foreground="" is_bold="False" name="windows" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1599389178.53" ts_lastsave="1599389191.31" unique_id="19">
@@ -338,7 +348,7 @@ FROM pg_stat_user_tables;</rich_text>
 # netsh winhttp reset proxy</rich_text>
 		</node>
 	</node>
-	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1623903971.21" unique_id="21">
+	<node custom_icon_id="0" foreground="" is_bold="False" name="linux" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890081.31" ts_lastsave="1624945618.17" unique_id="21">
 		<rich_text></rich_text>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="sed" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1597890088.34" ts_lastsave="1601275230.32" unique_id="22">
 			<rich_text>Add character at the beginning of each line using sed command. For example to add # in front of each line we can use sed command with following syntax:
@@ -796,7 +806,7 @@ $ ./NVIDIA-Linux-x86_64-460.32.03.run
 
 </rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="tor" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1610605387.28" ts_lastsave="1610786750.43" unique_id="124">
+		<node custom_icon_id="0" foreground="" is_bold="False" name="tor" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1610605387.28" ts_lastsave="1624877799.24" unique_id="124">
 			<rich_text weight="heavy">TOR</rich_text>
 			<rich_text>
 $ apt install tor
@@ -816,6 +826,60 @@ Edit /etc/polipo/confg:
 
 $ tor  # Run tor
 $ systemctl restart polipo.service    </rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="proxy" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1624877597.11" ts_lastsave="1624877667.66" unique_id="302">
+				<rich_text>#ExitNodes {us} 
+#ExcludeExitNodes {ua},{pk} 
+#StrictNodes 1 
+ 
+</rich_text>
+				<rich_text weight="heavy">HTTPSProxy &lt;IP&gt;:&lt;port&gt; </rich_text>
+				<rich_text>
+ 
+#HTTPSProxy &lt;IP&gt;:&lt;port&gt; 
+#HTTPProxyAuthenticator &lt;user&gt;:&lt;password&gt; 
+ 
+UseBridges 0 
+#ClientTransportPlugin obfs3 exec /usr/bin/obfsproxy managed 
+ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy managed 
+ 
+# send email to bridges@torproject.org with body `get transport obfs4` you can get new bridges. 
+#bridge obfs4 207.180.234.231:9004 D906B473B3663DE6C91D5CD0EBF3B550B4A440C4 cert=cQRRsCGmvYwrp6D8MTCCw1pC8Bvq4OrbySY5FHL7Ahc5E5Vuk+uDnbWwCIJgHYjWKY+APw iat-mode=0 
+#bridge obfs4 185.220.101.245:12346 734333526A6974665B20334E80A2FAAEB08B9523 cert=p9L6+25s8bnfkye1ZxFeAE4mAGY7DH4Gaj7dxngIIzP9BtqrHHwZXdjMK0RVIQ34C7aqZw iat-mode=0 
+#bridge obfs4 2.221.78.163:2487 2563C0683242FDA2A620821B35BA00182A11CE67 cert=xelYkjVTY45G72AJqSZENWOpJQvt09/qtB0y92ipK2LChMWHClfYGpIzjJqR4JTh32iwAA iat-mode=0 
+#bridge obfs4 98.149.15.16:42786 9EB94D29047DBAEFF56035353D4306B732C79F05 cert=rLYOqY0szSm5HndAVNCVN1vxuEhOmdQp1vwLfrw+cQePBQbfmSnlOnyJzUGlQMQVtxegPg iat-mode=0 
+bridge obfs4 74.104.165.202:9002 EF432018A6AA5D970B2F84E39CD30A147030141C cert=PhppfUusY85dHGvWtGTybZ1fED4DtbHmALkNMIOIYrAz1B4xN7/2a5gyiZe1epju1BOHVg iat-mode=0 
+bridge obfs4 81.61.62.30:9005 62DBD197C2E52A3A4E37954E04B05A85DEC33A01 cert=f0nPUBJqltbC26CA7jPG9YFzrpuqekKoUp5wzg1LCklL/SjmqSRyJvwhiZaVy8H6cyF+aw iat-mode=0 
+bridge obfs4 80.194.62.218:52769 7DD74B4331CF69C0CEFE60121F51553E5B484CE2 cert=jXRlwa2ODBOy6TShCG4kYUa3tgMIHE9miZ1u8Dvv0or1ROPpQJohK8C6meQdtj6I1WM4UA iat-mode=0 
+ 
+# Brdiges 
+################## 
+#       COMMANDs: (combine COMMANDs to specify multiple options simultaneously) 
+ 
+#               get bridges            Request vanilla bridges. 
+#               get transport [TYPE]   Request a Pluggable Transport by TYPE. 
+#               get help               Displays this message. 
+#               get key                Get a copy of BridgeDB's public GnuPG key. 
+#               get ipv6               Request IPv6 bridges. 
+#       Currently supported transport TYPEs: 
+ 
+#                           fte 
+ 
+#                          obfs3 
+ 
+#                          obfs4 
+ 
+#                         scramblesuit 
+#NOTE:The minimum time between emails is 3 hours. All further emails during this time period will be ignored. 
+ 
+#       Example : 
+ 
+#       To:bridges@torproject.org 
+ 
+#       body: get bridges 
+ 
+#       Send ! 
+##################</rich_text>
+			</node>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="rm" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1611048418.2" ts_lastsave="1611048434.66" unique_id="197">
 			<rich_text>
@@ -938,18 +1002,6 @@ To make the change permanent open the /etc/fstab file:
 		<node custom_icon_id="0" foreground="" is_bold="False" name="count_char" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1613992822.38" ts_lastsave="1613992833.23" unique_id="223">
 			<rich_text weight="heavy">$ fgrep -o ',' delete_from_vicarious_pilgrimage.sql | wc -l</rich_text>
 		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="zfs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614222810.75" ts_lastsave="1614222817.97" unique_id="225">
-			<rich_text>
-</rich_text>
-			<node custom_icon_id="0" foreground="" is_bold="False" name="add_new_disk" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614222817.97" ts_lastsave="1614222847.74" unique_id="226">
-				<rich_text>zpool iostat 
-</rich_text>
-				<rich_text weight="heavy">zpool add docker /dev/sdf  </rich_text>
-				<rich_text>
-zpool iostat
- zpool status</rich_text>
-			</node>
-		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="diff_2_inputs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614769134.31" ts_lastsave="1614769146.15" unique_id="229">
 			<rich_text>$ diff &lt;(</rich_text>
 			<rich_text weight="heavy">sed -e 's/=.*//g' .env</rich_text>
@@ -1001,11 +1053,6 @@ GRUB_DEFAULT=0
 then rerunning update-grub.
 </rich_text>
 			</node>
-		</node>
-		<node custom_icon_id="0" foreground="" is_bold="False" name="check-hard-type" prog_lang="sh" readonly="False" tags="" ts_creation="1615730965.03" ts_lastsave="1615730985.57" unique_id="241">
-			<rich_text>$ lsblk -d -o name,rota
-
-Here, &quot;rota&quot; means rotation device. If you get value of rota in the above output as 1, the disk is HDD. If the value is 0 (zero), then the disk is SSD.</rich_text>
 		</node>
 		<node custom_icon_id="0" foreground="" is_bold="False" name="top" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1615790366.76" ts_lastsave="1615791015.06" unique_id="242">
 			<rich_text>$ </rich_text>
@@ -1256,6 +1303,73 @@ sudo apt-get install p7zip-rar</rich_text>
 #cat ~/.kube/config | grep client-certificate | awk -F &quot;: &quot; '{print $2}' | base64 -d  &gt; /tmp/1
 #openssl x509 -in /tmp/1 -noout -text | grep Issuer
 #rm -fv /tmp/1</rich_text>
+			</node>
+		</node>
+		<node custom_icon_id="0" foreground="" is_bold="False" name="disk" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1624945618.17" ts_lastsave="1624945618.17" unique_id="304">
+			<rich_text></rich_text>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="disk-layout" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1624945591.79" ts_lastsave="1624945699.53" unique_id="303">
+				<rich_text></rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="create-partition" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1624945699.53" ts_lastsave="1624945701.03" unique_id="305">
+					<rich_text>I'll put an answer here since I've figured it out.
+First I query the disk layout using command similar to above but request sectors a units:
+
+
+</rich_text>
+					<rich_text family="monospace">&gt; parted /dev/sda unit s print free
+Model: ATA Hitachi HUA72302 (scsi)
+Disk /dev/sda: 3907029168s
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags: 
+
+Number  Start       End          Size         Type     File system  Flags
+        63s         2047s        1985s                 Free Space
+ 1      2048s       65570815s    65568768s    primary               raid
+ 2      65570816s   66594815s    1024000s     primary  ext4         boot, raid
+ 3      66594816s   132163583s   65568768s    primary               raid
+ 4      132163584s  3907029167s  3774865584s  primary
+</rich_text>
+					<rich_text>
+note </rich_text>
+					<rich_text family="monospace">132163584s</rich_text>
+					<rich_text>, the starting sector of the free space (previous partition end +1, if you don't use </rich_text>
+					<rich_text family="monospace">free</rich_text>
+					<rich_text> switch). Then the rest is as simple as:
+
+
+</rich_text>
+					<rich_text family="monospace">parted /dev/sda mkpart primary ext4 132163584s -- -1s
+
+
+-1s</rich_text>
+					<rich_text> is the ending sector being the end of disk. </rich_text>
+					<rich_text family="monospace">--</rich_text>
+					<rich_text> is to use </rich_text>
+					<rich_text family="monospace">-1s</rich_text>
+					<rich_text> in batch mode and prevent </rich_text>
+					<rich_text family="monospace">parted: invalid option -- '1'</rich_text>
+					<rich_text> error (running </rich_text>
+					<rich_text family="monospace">parted</rich_text>
+					<rich_text> in interactive mode doesn't need this).
+</rich_text>
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="zfs" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614222810.75" ts_lastsave="1624945639.13" unique_id="225">
+				<rich_text>
+</rich_text>
+				<node custom_icon_id="0" foreground="" is_bold="False" name="add_new_disk" prog_lang="custom-colors" readonly="False" tags="" ts_creation="1614222817.97" ts_lastsave="1614222847.74" unique_id="226">
+					<rich_text>zpool iostat 
+</rich_text>
+					<rich_text weight="heavy">zpool add docker /dev/sdf  </rich_text>
+					<rich_text>
+zpool iostat
+ zpool status</rich_text>
+				</node>
+			</node>
+			<node custom_icon_id="0" foreground="" is_bold="False" name="check-hard-type" prog_lang="sh" readonly="False" tags="" ts_creation="1615730965.03" ts_lastsave="1615730985.57" unique_id="241">
+				<rich_text>$ lsblk -d -o name,rota
+
+Here, &quot;rota&quot; means rotation device. If you get value of rota in the above output as 1, the disk is HDD. If the value is 0 (zero), then the disk is SSD.</rich_text>
 			</node>
 		</node>
 	</node>
